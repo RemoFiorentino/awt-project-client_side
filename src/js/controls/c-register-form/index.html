@@ -1,0 +1,26 @@
+<h3>register-form</h3>
+<form>
+    <div class="form-group" data-bind="css: {'has-error': errors()['account-type']}">
+        <label for="register-form_field_0" data-bind="css: {active: fields()['account-type']}, attr: {'data-error': errors()['account-type']}" class="control-label">account-type</label>
+        <input id="register-form_field_0" data-bind="value: fields()['account-type']" type="text" class="form-control validate" aria-describedby="register-form_field_0_error">
+        <span id="register-form_field_0_error" class="help-block" data-bind="text: errors()['account-type']"></span>
+    </div>
+    <div class="form-group" data-bind="css: {'has-error': errors()['fullname']}">
+        <label for="register-form_field_1" data-bind="css: {active: fields()['fullname']}, attr: {'data-error': errors()['fullname']}" class="control-label">fullname</label>
+        <input id="register-form_field_1" data-bind="value: fields()['fullname']" type="text" class="form-control validate" aria-describedby="register-form_field_1_error">
+        <span id="register-form_field_1_error" class="help-block" data-bind="text: errors()['fullname']"></span>
+    </div>
+    <div class="form-group" data-bind="css: {'has-error': errors()['password']}">
+        <label for="register-form_field_2" data-bind="css: {active: fields()['password']}, attr: {'data-error': errors()['password']}" class="control-label">password</label>
+        <input id="register-form_field_2" data-bind="value: fields()['password']" type="text" class="form-control validate" aria-describedby="register-form_field_2_error">
+        <span id="register-form_field_2_error" class="help-block" data-bind="text: errors()['password']"></span>
+    </div>
+    <div class="form-group" data-bind="css: {'has-error': errors()['username']}">
+        <label for="register-form_field_3" data-bind="css: {active: fields()['username']}, attr: {'data-error': errors()['username']}" class="control-label">username</label>
+        <input id="register-form_field_3" data-bind="value: fields()['username']" type="text" class="form-control validate" aria-describedby="register-form_field_3_error">
+        <span id="register-form_field_3_error" class="help-block" data-bind="text: errors()['username']"></span>
+    </div>
+</form>
+<div class="row">
+    <a class="col-xs-2 btn btn-primary" data-bind="click: trigger.bind($data, 'on-register-submit')">on-register-submit</a>
+</div>

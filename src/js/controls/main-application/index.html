@@ -1,0 +1,62 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#landmark-menu" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="landmark-menu" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <span data-bind="if: active() === 'account-edit-view'">
+            <c-account-edit-view params="context: context" class="container"></c-account-edit-view>
+        </span>
+        <span data-bind="if: active() === 'create-campaign-view'">
+            <c-create-campaign-view params="context: context" class="container"></c-create-campaign-view>
+        </span>
+        <span data-bind="if: active() === 'edit-campaign-view'">
+            <c-edit-campaign-view params="context: context" class="container"></c-edit-campaign-view>
+        </span>
+        <span data-bind="if: active() === 'home-bar'">
+            <c-home-bar params="context: context" class="container"></c-home-bar>
+        </span>
+        <span data-bind="if: active() === 'image-annotation'">
+            <c-image-annotation params="context: context" class="container"></c-image-annotation>
+        </span>
+        <span data-bind="if: active() === 'image-selection'">
+            <c-image-selection params="context: context" class="container"></c-image-selection>
+        </span>
+        <span data-bind="if: active() === 'image-upload-view'">
+            <c-image-upload-view params="context: context" class="container"></c-image-upload-view>
+        </span>
+        <span data-bind="if: active() === 'login-view'">
+            <c-login-view params="context: context" class="container"></c-login-view>
+        </span>
+        <span data-bind="if: active() === 'logout-view'">
+            <c-logout-view params="context: context" class="container"></c-logout-view>
+        </span>
+        <span data-bind="if: active() === 'manager-view'">
+            <c-manager-view params="context: context" class="container"></c-manager-view>
+        </span>
+        <span data-bind="if: active() === 'register-view'">
+            <c-register-view params="context: context" class="container"></c-register-view>
+        </span>
+        <span data-bind="if: active() === 'show-campaign'">
+            <c-show-campaign params="context: context" class="container"></c-show-campaign>
+        </span>
+        <span data-bind="if: active() === 'task-view'">
+            <c-task-view params="context: context" class="container"></c-task-view>
+        </span>
+        <span data-bind="if: active() === 'worker-select-view'">
+            <c-worker-select-view params="context: context" class="container"></c-worker-select-view>
+        </span>
+    </div>
+</div>

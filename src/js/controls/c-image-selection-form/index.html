@@ -1,0 +1,11 @@
+<h3>image-selection-form</h3>
+<form>
+    <div class="form-group" data-bind="css: {'has-error': errors()['accepted']}">
+        <label for="image-selection-form_field_0" data-bind="css: {active: fields()['accepted']}, attr: {'data-error': errors()['accepted']}" class="control-label">accepted</label>
+        <input id="image-selection-form_field_0" data-bind="value: fields()['accepted']" type="text" class="form-control validate" aria-describedby="image-selection-form_field_0_error">
+        <span id="image-selection-form_field_0_error" class="help-block" data-bind="text: errors()['accepted']"></span>
+    </div>
+</form>
+<div class="row">
+    <a class="col-xs-2 btn btn-primary" data-bind="click: trigger.bind($data, 'on-image-selection-submit')">on-image-selection-submit</a>
+</div>
