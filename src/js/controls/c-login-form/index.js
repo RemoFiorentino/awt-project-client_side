@@ -8,9 +8,8 @@ function ViewModel(params) {
     var self = this;
     self.context = params.context;
     self.status = ko.observable('');
-    self.fields = ko.observable({});
+    self.fields = ko.observable({}).extend({ required: true });
     self.errors = ko.observable({});
-
     self.trigger = function (id) {
         self.context.events[id](self.context, self.output);
     };
@@ -27,7 +26,7 @@ ViewModel.prototype._compute = function () {
     this.output = {
         'password': this.input['password'],
         'username': this.input['username'],
-    }
+    };
     var self = this,
         fields = {
             'password': ko.observable(this.input['password']),

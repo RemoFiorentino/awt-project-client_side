@@ -12,10 +12,8 @@ exports.register = function () {
     require('./c-image-annotation').register();
     require('./c-image-selection').register();
     require('./c-image-upload-view').register();
-    require('./c-login-view').register();
     require('./c-logout-view').register();
     require('./c-manager-view').register();
-    require('./c-register-view').register();
     require('./c-show-campaign').register();
     require('./c-task-view').register();
     require('./c-worker-select-view').register();
@@ -28,9 +26,11 @@ exports.register = function () {
     require('./c-login-form').register();
     require('./c-list-campaign').register();
     require('./c-register-form').register();
+    require('./c-register-view').register();
     require('./c-campaign-worker-list').register();
     require('./c-list-available-workers').register();
     require('./c-list-available-annotator').register();
     require('./c-selector-list').register();
     require('./c-annotator-list').register();
+    require('./c-line-drawer').register();
 };

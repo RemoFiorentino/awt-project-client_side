@@ -1,16 +1,34 @@
-<h3>login-Fom</h3>
+<span>
+<div class='well col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1'>
+<fieldset>
+<legend class='text-center'>Log In</legend>
 <form>
-    <div class="form-group" data-bind="css: {'has-error': errors()['password']}">
-        <label for="login-form_field_0" data-bind="css: {active: fields()['password']}, attr: {'data-error': errors()['password']}" class="control-label">password</label>
-        <input id="login-form_field_0" data-bind="value: fields()['password']" type="text" class="form-control validate" aria-describedby="login-form_field_0_error">
-        <span id="login-form_field_0_error" class="help-block" data-bind="text: errors()['password']"></span>
-    </div>
-    <div class="form-group" data-bind="css: {'has-error': errors()['username']}">
-        <label for="login-form_field_1" data-bind="css: {active: fields()['username']}, attr: {'data-error': errors()['username']}" class="control-label">username</label>
-        <input id="login-form_field_1" data-bind="value: fields()['username']" type="text" class="form-control validate" aria-describedby="login-form_field_1_error">
-        <span id="login-form_field_1_error" class="help-block" data-bind="text: errors()['username']"></span>
-    </div>
-</form>
-<div class="row">
-    <a class="col-xs-2 btn btn-primary" data-bind="click: trigger.bind($data, 'on-login-submit')">on-login-submit</a>
+<div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;username&#39;]}'>
+<label class='control-label' data-bind='css: {active: fields()[&#39;username&#39;]}, attr: {&#39;data-error&#39;: errors()[&#39;username&#39;]}' for='login-form_field_1'>Username</label>
+<input aria-describedby='login-form_field_1_error' class='form-control validate' data-bind='textInput: fields()[&#39;username&#39;]' id='login-form_field_1' placeholder='Username' type='text'>
+<span class='help-block' data-bind='text: errors()[&#39;username&#39;]' id='login-form_field_1_error'></span>
 </div>
+<div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;password&#39;]}'>
+<label class='control-label' data-bind='css: {active: fields()[&#39;password&#39;]}, attr: {&#39;data-error&#39;: errors()[&#39;password&#39;]}' for='login-form_field_0'>Password</label>
+<input aria-describedby='login-form_field_0_error' class='form-control validate' data-bind='textInput: fields()[&#39;password&#39;]' id='login-form_field_0' placeholder='Password' type='password'>
+<span class='help-block' data-bind='text: errors()[&#39;password&#39;]' id='login-form_field_0_error'></span>
+</div>
+</form>
+<div class='row'>
+<div class='text-center margin__top--20px'>
+<a class='btn btn-primary' data-bind='click: trigger.bind($data, &#39;on-login-submit&#39;)'>
+LOG IN
+</a>
+<br>
+<p class='margin__top--10px'>
+I don’t have an account,
+<a data-bind='click: trigger.bind($data,&#39;go-register&#39;)'>
+Register
+</a>
+</p>
+<hr class='separator margin__center'>
+</div>
+</div>
+</fieldset>
+</div>
+</span>

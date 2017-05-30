@@ -45,7 +45,6 @@ ViewModel.prototype._compute = function () {
         };
     fields['account-type'].subscribe(function (value) {
         self.output['account-type'] = value;
-        self.errors()['account-type'](undefined);
     });
     fields['fullname'].subscribe(function (value) {
         self.output['fullname'] = value;
@@ -66,6 +65,7 @@ ViewModel.prototype._compute = function () {
 
 
 ViewModel.prototype.init = function (options) {
+    alert(options)
     options = options || {};
     this.output = undefined;
     this.fields({});

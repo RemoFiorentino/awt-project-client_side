@@ -9,10 +9,10 @@ exports.createEvent = function () { // add "options" parameter if needed
             ,'username' : data['username']
         };
         var promise = context.actions['send-login-data']({filters: packet});
-        context.runningActionsByContainer['login-view'].push(promise);
+        context.runningActionsByContainer['login-form'].push(promise);
         promise.then(function (result) {
-            context.runningActionsByContainer['login-view'].splice(
-                context.runningActionsByContainer['login-view'].indexOf(promise), 1
+            context.runningActionsByContainer['login-form'].splice(
+                context.runningActionsByContainer['login-form'].indexOf(promise), 1
             );
             if (result.event) {
                 context.events[result.event](context, result.data);

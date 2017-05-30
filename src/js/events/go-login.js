@@ -3,9 +3,9 @@
 
 exports.createEvent = function () { // add "options" parameter if needed
     return function (context) {
-        if (!context.vms['register-view']) {
-            context.top.active('register-view');
+        if (!context.vms['login-form']) {
+            context.top.active('login-form');
         }
-        context.vms['register-view'].init();
+        context.vms['login-form'].init();
     };
 };

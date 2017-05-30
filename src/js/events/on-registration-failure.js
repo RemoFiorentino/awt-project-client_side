@@ -2,11 +2,14 @@
 "use strict";
 
 exports.createEvent = function () { // add "options" parameter if needed
-    return function (context) {
-        if (!context.vms['register-view']) {
-            context.top.active('register-view');
-            context.vms['register-view'].init({mask: 'register-form'});
+    return function (context,data) {
+        data = data || {};
+        var packet = {
+            'error' : data['error']
+        };
+        if (!context.vms['register-form']) {
+            context.top.active('register-form');
         }
-        context.vms['register-form'].init();
+        context.vms['register-form'].init(packet);
     };
 };

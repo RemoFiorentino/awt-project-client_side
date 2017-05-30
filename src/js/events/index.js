@@ -6,8 +6,8 @@ exports.createEvents = function (options) {
         'on-change-campaign-state-result': require('./on-change-campaign-state-result').createEvent(options)
         ,'go-to-images-upload': require('./go-to-images-upload').createEvent(options)
         ,'go-to-workers': require('./go-to-workers').createEvent(options)
-        ,'login-btn-pressed': require('./login-btn-pressed').createEvent(options)
-        ,'register-btn-pressed': require('./register-btn-pressed').createEvent(options)
+        ,'go-login': require('./go-login').createEvent(options)
+        ,'go-register': require('./go-register').createEvent(options)
         ,'logout-btn-pressed': require('./logout-btn-pressed').createEvent(options)
         ,'account-edit-btn-pressed': require('./account-edit-btn-pressed').createEvent(options)
         ,'go-manager-campaign-image': require('./go-manager-campaign-image').createEvent(options)
@@ -36,7 +36,7 @@ exports.createEvents = function (options) {
         ,'on-image-upload-submit': require('./on-image-upload-submit').createEvent(options)
         ,'on-login-submit': require('./on-login-submit').createEvent(options)
         ,'496ca6e1-d56b-4d3d-9567-ca80fbeeb9e5': require('./496ca6e1-d56b-4d3d-9567-ca80fbeeb9e5').createEvent(options)
-        ,'on-register-submit': require('./on-register-submit').createEvent(options)
+        ,'submit-register': require('./submit-register').createEvent(options)
         ,'go-to-image-selection': require('./go-to-image-selection').createEvent(options)
         ,'go-to-image-annotation': require('./go-to-image-annotation').createEvent(options)
         ,'2c13eb15-2680-4393-a576-b5f2cc847b95': require('./2c13eb15-2680-4393-a576-b5f2cc847b95').createEvent(options)
@@ -49,5 +49,6 @@ exports.createEvents = function (options) {
         ,'on-registration-failure': require('./on-registration-failure').createEvent(options)
         ,'on-registration-worker-success': require('./on-registration-worker-success').createEvent(options)
         ,'on-registration-manager-success': require('./on-registration-manager-success').createEvent(options)
+        ,'go-home': require('./go-home').createEvent(options)
     };
 };

@@ -21,6 +21,7 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     mail.find({subject: 'Re: ' + data.subject})
         .then(solve);
     */
+    alert("amarildo fucking prick");
     // THIS CAN BE REMOVED (BEGIN)
     $.notify({message: 'send-login-data'}, {allow_dismiss: true, type: 'success'});
     solve({

@@ -1,62 +1,100 @@
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#landmark-menu" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div id="landmark-menu" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-            </ul>
-        </div>
-    </div>
+<nav class='navbar navbar-default'>
+<div class='container-fluid'>
+<div class='navbar-header'>
+<button aria-expanded='false' class='navbar-toggle collapsed' data-target='#landmark-menu' data-toggle='collapse' type='button'>
+<span class='sr-only'>Toggle navigation</span>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+</button>
+<a class='navbar-brand cursor--pointer' data-bind='click: trigger.bind($data,&#39;go-home&#39;)'>
+<img alt='Logo' class='img__width__1c5em pull-left' src='/remofiorentino/awt-project/www/images/logo.png'>
+<span class='vertical__middle'>
+Mountain
+<b class='text__color--green'>
+Flag
+</b>
+</span>
+</a>
+</div>
+<div class='collapse navbar-collapse' id='landmark-menu'>
+<ul class='nav navbar-nav navbar-right' data-bind='if: context.repositories[&#39;current_user&#39;] === &#39;&#39;'>
+<li>
+<a data-bind='click: trigger.bind($data,&#39;go-login&#39;)'>
+<span aria-hidden='true' class='glyphicon glyphicon-log-in'></span>
+Login
+</a>
+</li>
+<li>
+<a data-bind='click: trigger.bind($data,&#39;go-register&#39;)'>
+<span aria-hidden='true' class='glyphicon glyphicon-inbox'></span>
+Register
+</a>
+</li>
+</ul>
+<ul class='nav navbar-nav navbar-right' data-bind='if: context.repositories[&#39;current_user&#39;] != &#39;&#39;'>
+<li>
+<a data-bind='click: trigger.bind($data,&#39;logout-btn-pressed&#39;)'>
+<span aria-hidden='true' class='glyphicon glyphicon-log-out'></span>
+Logout
+</a>
+</li>
+<li>
+<a data-bind='click: trigger.bind($data,&#39;account-edit-btn-pressed&#39;)'>
+<span aria-hidden='true' class='glyphicon glyphicon-user'></span>
+Edit Account
+</a>
+</li>
+</ul>
+</div>
+</div>
 </nav>
-<div class="container">
-    <div class="row">
-        <span data-bind="if: active() === 'account-edit-view'">
-            <c-account-edit-view params="context: context" class="container"></c-account-edit-view>
-        </span>
-        <span data-bind="if: active() === 'create-campaign-view'">
-            <c-create-campaign-view params="context: context" class="container"></c-create-campaign-view>
-        </span>
-        <span data-bind="if: active() === 'edit-campaign-view'">
-            <c-edit-campaign-view params="context: context" class="container"></c-edit-campaign-view>
-        </span>
-        <span data-bind="if: active() === 'home-bar'">
-            <c-home-bar params="context: context" class="container"></c-home-bar>
-        </span>
-        <span data-bind="if: active() === 'image-annotation'">
-            <c-image-annotation params="context: context" class="container"></c-image-annotation>
-        </span>
-        <span data-bind="if: active() === 'image-selection'">
-            <c-image-selection params="context: context" class="container"></c-image-selection>
-        </span>
-        <span data-bind="if: active() === 'image-upload-view'">
-            <c-image-upload-view params="context: context" class="container"></c-image-upload-view>
-        </span>
-        <span data-bind="if: active() === 'login-view'">
-            <c-login-view params="context: context" class="container"></c-login-view>
-        </span>
-        <span data-bind="if: active() === 'logout-view'">
-            <c-logout-view params="context: context" class="container"></c-logout-view>
-        </span>
-        <span data-bind="if: active() === 'manager-view'">
-            <c-manager-view params="context: context" class="container"></c-manager-view>
-        </span>
-        <span data-bind="if: active() === 'register-view'">
-            <c-register-view params="context: context" class="container"></c-register-view>
-        </span>
-        <span data-bind="if: active() === 'show-campaign'">
-            <c-show-campaign params="context: context" class="container"></c-show-campaign>
-        </span>
-        <span data-bind="if: active() === 'task-view'">
-            <c-task-view params="context: context" class="container"></c-task-view>
-        </span>
-        <span data-bind="if: active() === 'worker-select-view'">
-            <c-worker-select-view params="context: context" class="container"></c-worker-select-view>
-        </span>
-    </div>
+<!-- / %line-drawer{:params => "context:context,src: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Matterhorn_Riffelsee_2005-06-11.jpg', pen: 10, line: line"} -->
+<div class='container'>
+<div class='row'>
+<span data-bind='if: active() === &#39;account-edit-view&#39;'>
+<c-account-edit-view class='container' params='context: context'></c-account-edit-view>
+</span>
+<span data-bind='if: active() === &#39;create-campaign-view&#39;'>
+<c-create-campaign-view class='container' params='context: context'></c-create-campaign-view>
+</span>
+<span data-bind='if: active() === &#39;edit-campaign-view&#39;'>
+<c-edit-campaign-view class='container' params='context: context'></c-edit-campaign-view>
+</span>
+<span data-bind='if: active() === &#39;home-bar&#39;'>
+<c-home-bar class='container' params='context: context'></c-home-bar>
+</span>
+<span data-bind='if: active() === &#39;image-annotation&#39;'>
+<c-image-annotation class='container' params='context: context'></c-image-annotation>
+</span>
+<span data-bind='if: active() === &#39;image-selection&#39;'>
+<c-image-selection class='container' params='context: context'></c-image-selection>
+</span>
+<span data-bind='if: active() === &#39;image-upload-view&#39;'>
+<c-image-upload-view class='container' params='context: context'></c-image-upload-view>
+</span>
+<!-- /login-form -->
+<span data-bind='if: active() === &#39;login-form&#39;'>
+<c-login-form class='container' params='context: context'></c-login-form>
+</span>
+<span data-bind='if: active() === &#39;logout-view&#39;'>
+<c-logout-view class='container' params='context: context'></c-logout-view>
+</span>
+<span data-bind='if: active() === &#39;manager-view&#39;'>
+<c-manager-view class='container' params='context: context'></c-manager-view>
+</span>
+<!-- /register-form -->
+<span data-bind='if: active() === &#39;register-view&#39;'>
+<c-register-form class='container' params='context: context'></c-register-form>
+</span>
+<span data-bind='if: active() === &#39;show-campaign&#39;'>
+<c-show-campaign class='container' params='context: context'></c-show-campaign>
+</span>
+<span data-bind='if: active() === &#39;task-view&#39;'>
+<c-task-view class='container' params='context: context'></c-task-view>
+</span>
+<span data-bind='if: active() === &#39;worker-select-view&#39;'>
+<c-worker-select-view class='container' params='context: context'></c-worker-select-view>
+</span>
+</div>
 </div>

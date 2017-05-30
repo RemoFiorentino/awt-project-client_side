@@ -1,26 +1,47 @@
-<h3>register-form</h3>
+<span>
+<div class='well col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1'>
+<fieldset>
+<legend class='text-center'>Register</legend>
 <form>
-    <div class="form-group" data-bind="css: {'has-error': errors()['account-type']}">
-        <label for="register-form_field_0" data-bind="css: {active: fields()['account-type']}, attr: {'data-error': errors()['account-type']}" class="control-label">account-type</label>
-        <input id="register-form_field_0" data-bind="value: fields()['account-type']" type="text" class="form-control validate" aria-describedby="register-form_field_0_error">
-        <span id="register-form_field_0_error" class="help-block" data-bind="text: errors()['account-type']"></span>
-    </div>
-    <div class="form-group" data-bind="css: {'has-error': errors()['fullname']}">
-        <label for="register-form_field_1" data-bind="css: {active: fields()['fullname']}, attr: {'data-error': errors()['fullname']}" class="control-label">fullname</label>
-        <input id="register-form_field_1" data-bind="value: fields()['fullname']" type="text" class="form-control validate" aria-describedby="register-form_field_1_error">
-        <span id="register-form_field_1_error" class="help-block" data-bind="text: errors()['fullname']"></span>
-    </div>
-    <div class="form-group" data-bind="css: {'has-error': errors()['password']}">
-        <label for="register-form_field_2" data-bind="css: {active: fields()['password']}, attr: {'data-error': errors()['password']}" class="control-label">password</label>
-        <input id="register-form_field_2" data-bind="value: fields()['password']" type="text" class="form-control validate" aria-describedby="register-form_field_2_error">
-        <span id="register-form_field_2_error" class="help-block" data-bind="text: errors()['password']"></span>
-    </div>
-    <div class="form-group" data-bind="css: {'has-error': errors()['username']}">
-        <label for="register-form_field_3" data-bind="css: {active: fields()['username']}, attr: {'data-error': errors()['username']}" class="control-label">username</label>
-        <input id="register-form_field_3" data-bind="value: fields()['username']" type="text" class="form-control validate" aria-describedby="register-form_field_3_error">
-        <span id="register-form_field_3_error" class="help-block" data-bind="text: errors()['username']"></span>
-    </div>
-</form>
-<div class="row">
-    <a class="col-xs-2 btn btn-primary" data-bind="click: trigger.bind($data, 'on-register-submit')">on-register-submit</a>
+<div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;fullname&#39;]}'>
+<label class='control-label' data-bind='css: {active: fields()[&#39;fullname&#39;]}, attr: {&#39;data-error&#39;: errors()[&#39;fullname&#39;]}' for='register-form_field_1'>Fullname</label>
+<input aria-describedby='register-form_field_1_error' class='form-control validate' data-bind='value: fields()[&#39;fullname&#39;]' id='register-form_field_1' require='true' type='text'>
+<span class='help-block' data-bind='text: errors()[&#39;fullname&#39;]' id='register-form_field_1_error'></span>
 </div>
+<div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;username&#39;]}'>
+<label class='control-label' data-bind='css: {active: fields()[&#39;username&#39;]}, attr: {&#39;data-error&#39;: errors()[&#39;username&#39;]}' for='register-form_field_3'>Username</label>
+<input aria-describedby='register-form_field_3_error' class='form-control validate' data-bind='value: fields()[&#39;username&#39;]' id='register-form_field_3' require='true' type='text'>
+<span class='help-block' data-bind='text: errors()[&#39;username&#39;]' id='register-form_field_3_error'></span>
+</div>
+<div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;account-type&#39;]}'>
+<label class='control-label' data-bind='css: {active: fields()[&#39;account-type&#39;]}, attr: {&#39;data-error&#39;: errors()[&#39;account-type&#39;]}' for='register-form_field_0'>Select account type</label>
+<select aria-describedby='register-form_field_0_error' class='form-control validate' data-bind='value: fields()[&#39;account-type&#39;]' id='register-form_field_0' require='true'>
+<option value='master'>Master</option>
+<option value='worker'>Worker</option>
+</select>
+<span class='help-block' data-bind='text: errors()[&#39;account-type&#39;]' id='register-form_field_0_error'></span>
+</div>
+<div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;password&#39;]}'>
+<label class='control-label' data-bind='css: {active: fields()[&#39;password&#39;]}, attr: {&#39;data-error&#39;: errors()[&#39;password&#39;]}' for='register-form_field_2'>Password</label>
+<input aria-describedby='register-form_field_2_error' class='form-control validate' data-bind='value: fields()[&#39;password&#39;]' id='register-form_field_2' require='true' type='password'>
+<span class='help-block' data-bind='text: errors()[&#39;password&#39;]' id='register-form_field_2_error'></span>
+</div>
+</form>
+<div class='row'>
+<div class='text-center margin__top--20px'>
+<a class='btn btn-primary' data-bind='click: trigger.bind($data, &#39;submit-register&#39;)'>
+REGISTER
+</a>
+<br>
+<p class='margin__top--10px'>
+Already have an account,
+<a data-bind='click: trigger.bind($data,&#39;go-login&#39;)'>
+Log In
+</a>
+</p>
+<hr class='separator margin__center'>
+</div>
+</div>
+</fieldset>
+</div>
+</span>
