@@ -2,7 +2,8 @@
 "use strict";
 
 var ko = require('knockout'),
-    Promise = require('bluebird');
+    Promise = require('bluebird'),
+    $ = require('jquery');
 
 function ViewModel(params) {
     var self = this;
@@ -13,6 +14,31 @@ function ViewModel(params) {
     self.trigger = function (id) {
         self.context.events[id](self.context, self.output);
     };
+    self.sendData = function() {
+        var self = this;
+        this.data = {
+            'password': self.output['password'],
+            'username': self.output['username'],
+        };
+        $.ajax({
+        url: "http://awt.ifmledit.org/api/auth",
+        type: "POST",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "APIKey fb72e1fe-3583-11e7-a919-92ebcb67fe33");
+        },
+        data: JSON.stringify(this.data),
+        contentType: "application/json",
+        success: function(result){
+            alert("it works")
+        },
+          statusCode: {
+            400: function(xhr) {
+                var myobj = JSON.parse(xhr.responseText);
+                self.errors()['password'](myobj.error.password);
+                self.errors()['username'](myobj.error.username);
+            }
+        }})  
+    }
 }
 
 ViewModel.prototype.id = 'login-form';

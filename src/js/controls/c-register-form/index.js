@@ -2,7 +2,8 @@
 "use strict";
 
 var ko = require('knockout'),
-    Promise = require('bluebird');
+    Promise = require('bluebird'),
+    $ = require('jquery');
 
 function ViewModel(params) {
     var self = this;
@@ -14,6 +15,35 @@ function ViewModel(params) {
     self.trigger = function (id) {
         self.context.events[id](self.context, self.output);
     };
+    self.sendData = function() {
+        var self = this;
+        this.data = {
+            'type': self.output['account-type'],
+            'fullname': self.output['fullname'],
+            'password': self.output['password'],
+            'username': self.output['username'],
+        };
+        $.ajax({
+        url: "http://awt.ifmledit.org/api/user",
+        type: "POST",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "APIKey fb72e1fe-3583-11e7-a919-92ebcb67fe33");
+        },
+        data: JSON.stringify(this.data),
+        contentType: "application/json",
+        success: function(result){
+            alert("it works")
+        },
+          statusCode: {
+            400: function(xhr) {
+                var myobj = JSON.parse(xhr.responseText);
+                self.errors()['account-type'](myobj.error.type);
+                self.errors()['fullname'](myobj.error.fullname);
+                self.errors()['password'](myobj.error.password);
+                self.errors()['username'](myobj.error.username);
+            }
+        }})  
+    }
 }
 
 ViewModel.prototype.id = 'register-form';
@@ -22,6 +52,7 @@ ViewModel.prototype.waitForStatusChange = function () {
     return this._initializing ||
            Promise.resolve();
 };
+
 
 ViewModel.prototype._compute = function () {
     this.output = {
@@ -65,7 +96,6 @@ ViewModel.prototype._compute = function () {
 
 
 ViewModel.prototype.init = function (options) {
-    alert(options)
     options = options || {};
     this.output = undefined;
     this.fields({});

@@ -45,7 +45,6 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
         400: function(xhr) {
           data =  xhr.responseText;
           alert(solve);
-          solve.resolve();
           return solve(event='on-registration-failure', data=data);
         }
     }}).then(solve);

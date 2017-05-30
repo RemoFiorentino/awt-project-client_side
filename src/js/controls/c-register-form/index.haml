@@ -23,7 +23,7 @@
           %span#register-form_field_2_error.help-block{"data-bind" => "text: errors()['password']"}
       .row
         .text-center.margin__top--20px
-          %a.btn.btn-primary{"data-bind" => "click: trigger.bind($data, 'submit-register')"}
+          %a.btn.btn-primary{"data-bind" => "click: sendData"}
             REGISTER
           %br
           %p.margin__top--10px
