@@ -12,7 +12,6 @@ exports.register = function () {
     require('./c-image-annotation').register();
     require('./c-image-selection').register();
     require('./c-image-upload-view').register();
-    require('./c-logout-view').register();
     require('./c-manager-view').register();
     require('./c-show-campaign').register();
     require('./c-task-view').register();

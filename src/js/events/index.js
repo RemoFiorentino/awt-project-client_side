@@ -21,7 +21,6 @@ exports.createEvents = function (options) {
         ,'task-go': require('./task-go').createEvent(options)
         ,'image-upload-failure': require('./image-upload-failure').createEvent(options)
         ,'image-annotation-go': require('./image-annotation-go').createEvent(options)
-        ,'logout-go': require('./logout-go').createEvent(options)
         ,'account-edit-submit': require('./account-edit-submit').createEvent(options)
         ,'campaign-create-submit': require('./campaign-create-submit').createEvent(options)
         ,'campaign-edit-submit': require('./campaign-edit-submit').createEvent(options)

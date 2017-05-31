@@ -23,8 +23,7 @@ function ViewModel(params) {
 }
 
 ViewModel.prototype.id = 'home-bar';
-ViewModel.prototype.children = [
-];
+ViewModel.prototype.children = [];
 
 exports.register = function () {
     ko.components.register('c-home-bar', {
