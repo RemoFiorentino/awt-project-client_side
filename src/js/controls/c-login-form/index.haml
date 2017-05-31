@@ -3,6 +3,8 @@
     %fieldset
       %legend.text-center Log In
       %form
+        .form-group{"data-bind" => "css: {'has-error': errors()['others']}"}
+          %h5#login-form_field_error.help-block.text-center{"data-bind" => "text: errors()['others']"}
         .form-group{"data-bind" => "css: {'has-error': errors()['username']}"}
           %label.control-label{"data-bind" => "css: {active: fields()['username']}, attr: {'data-error': errors()['username']}", :for => "login-form_field_1"} Username
           %input#login-form_field_1.form-control.validate{"aria-describedby" => "login-form_field_1_error", "data-bind" => "textInput: fields()['username']", :type => "text", "placeholder" => "Username"}/
@@ -13,11 +15,11 @@
           %span#login-form_field_0_error.help-block{"data-bind" => "text: errors()['password']"}
       .row
         .text-center.margin__top--20px
-          %a.btn.btn-primary{"data-bind" => "click: sendData"}
+          %a.btn.btn-primary{"data-bind" => "click: trigger.bind($data, 'login-submit')"}
             LOG IN
           %br
           %p.margin__top--10px
             I don’t have an account, 
-            %a{"data-bind" => "click: trigger.bind($data,'go-register')"}
+            %a{"data-bind" => "click: trigger.bind($data,'register-go')"}
               Register
           %hr.separator.margin__center

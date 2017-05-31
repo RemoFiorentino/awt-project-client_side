@@ -28,8 +28,8 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     // THIS CAN BE REMOVED (BEGIN)
     $.notify({message: 'send-edit-campaign'}, {allow_dismiss: true, type: 'success'});
     solve({
-        event: 'on-edit-campaign-success', // on-edit-campaign-success
-        // event: 'on-edit-campaign-failure', // on-edit-campaign-failure
+        event: 'campaign-edit-go', // campaign-edit-go
+        // event: 'campaign-edit-failure', // campaign-edit-failure
         data: {
         }
     });

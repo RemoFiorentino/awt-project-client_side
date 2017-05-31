@@ -16,6 +16,14 @@ function ViewModel(params) {
     };
 }
 
+ViewModel.prototype.fill = function (errors_sent) {
+    alert(JSON.stringify(this.context.repositories['current_user']))
+    this.fields()['fullname'](this.context.repositories['current_user'].fullname);
+    this.fields()['password'](this.context.repositories['current_user'].password);
+    this.errors()['fullname'](errors_sent.fullname);
+    this.errors()['password'](errors_sent.password);
+};
+
 ViewModel.prototype.id = 'account-edit-form';
 
 ViewModel.prototype.waitForStatusChange = function () {
@@ -36,6 +44,7 @@ ViewModel.prototype._compute = function () {
         errors = {
             'fullname': ko.observable(this.input['fullname-error']),
             'password': ko.observable(this.input['password-error']),
+            'others': ko.observable(),
         };
     fields['fullname'].subscribe(function (value) {
         self.output['fullname'] = value;
@@ -51,8 +60,9 @@ ViewModel.prototype._compute = function () {
 };
 
 
-ViewModel.prototype.init = function (options) {
+ViewModel.prototype.init = function (options, errors) {
     options = options || {};
+    errors = errors || {};
     this.output = undefined;
     this.fields({});
     this.errors({});
@@ -62,6 +72,7 @@ ViewModel.prototype.init = function (options) {
     this._initializing = new Promise(function (resolve) {
         setTimeout(function () {
             self._compute();
+            self.fill(errors);
             resolve();
             self._initializing = undefined;
         }, 1);

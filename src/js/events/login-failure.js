@@ -2,11 +2,11 @@
 "use strict";
 
 exports.createEvent = function () { // add "options" parameter if needed
-    return function (context) {
+    return function (context,data) {
         if (!context.vms['login-view']) {
             context.top.active('login-view');
             context.vms['login-view'].init({mask: 'login-form'});
         }
-        context.vms['login-form'].init();
+        context.vms['login-form'].init({},data.errors, data.fields);
     };
 };

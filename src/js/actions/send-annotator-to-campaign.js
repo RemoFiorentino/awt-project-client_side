@@ -23,7 +23,7 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     // THIS CAN BE REMOVED (BEGIN)
     $.notify({message: 'send-annotator-to-campaign'}, {allow_dismiss: true, type: 'success'});
     solve({
-        event: 'on-send-annotator-success', // on-send-annotator-success
+        event: 'worker-select-go', // worker-select-go
         data: {
         }
     });

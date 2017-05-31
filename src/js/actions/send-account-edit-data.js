@@ -1,36 +1,67 @@
 /*jslint node: true, nomen: true */
 "use strict";
 
-var Promise = require('bluebird');
+var Promise = require('bluebird'),
+    $ = require('jquery');
 
-function Action() { // add "options" parameters if needed
+var option;
+
+function Action(options) { // add "options" parameters if needed
     // TODO: Global Initialization
-    /*
-    example:
-    this.collection = options.repositories.mail;
-    */
+    option = options.repositories;
 }
 Action.prototype.run = function (parameters, solve) { // add "onCancel" parameters if needed
-    // Parameters:
-    // parameters['fullname']
-    // parameters['password']
-
-    // TODO: Execution
-    /*
-    example:
-    mail.find({subject: 'Re: ' + data.subject})
-        .then(solve);
-    */
-    // THIS CAN BE REMOVED (BEGIN)
-    $.notify({message: 'send-account-edit-data'}, {allow_dismiss: true, type: 'success'});
-    solve({
-        event: 'on-account-edit-failure', // on-account-edit-failure
-        // event: 'on-account-edit-success', // on-account-edit-success
-        data: {
-            'token': '0',
+    Parameters:
+    parameters['fullname']
+    parameters['password']
+    var data = {};
+    var datos = {
+        "fullname": parameters['fullname'],
+        "password": parameters['password'],
+    };
+    $.ajax({
+    url: "http://awt.ifmledit.org/api/user/me",
+    type: "PUT",
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "APIToken "+option.current_user.token);
+    },
+    data: JSON.stringify(datos),
+    contentType: "application/json",
+    success: function(result){
+        var myobj = result;
+        option.current_user.fullname = datos.fullname
+        if(option.current_user.type.toUpperCase() === "MASTER"){
+                solve({
+                    event: 'manager-go', // manager-go
+                    data: data
+                });
+        }else{
+            solve({
+                event: 'task-go', // task-go
+                data: data
+            });
         }
-    });
-    // THIS CAN BE REMOVED (END)
+    },
+    error:  function(xhr) {
+        //data =  xhr.responseText;
+        var myobj = JSON.parse(xhr.responseText);
+        data ={
+            fields:{
+                "fullname": parameters['fullname'],
+            },
+            errors:{
+                'password': myobj.error.password,
+                'fullname': myobj.error.fullname,
+            }
+        }
+        if(typeof(myobj.error) === 'string'){
+            data.errors['others'] = myobj.error;
+        }
+        solve({
+            event: 'account-edit-failure', 
+            data: data
+        });
+    }});
 };
 
 exports.createAction = function (options) {

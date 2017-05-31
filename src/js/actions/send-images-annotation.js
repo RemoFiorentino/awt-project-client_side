@@ -23,8 +23,8 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     // THIS CAN BE REMOVED (BEGIN)
     $.notify({message: 'send-images-annotation'}, {allow_dismiss: true, type: 'success'});
     solve({
-        event: 'on-more-images-to-annotate', // on-more-images-to-annotate
-        // event: 'on-no-more-images-annotate', // on-no-more-images-annotate
+        event: 'image-annotation-go', // image-annotation-go
+        // event: 'task-go', // task-go
         data: {
         }
     });

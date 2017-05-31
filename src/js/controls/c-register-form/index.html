@@ -29,13 +29,13 @@
 </form>
 <div class='row'>
 <div class='text-center margin__top--20px'>
-<a class='btn btn-primary' data-bind='click: sendData'>
+<a class='btn btn-primary' data-bind='click: trigger.bind($data, &#39;register-submit&#39;)'>
 REGISTER
 </a>
 <br>
 <p class='margin__top--10px'>
 Already have an account,
-<a data-bind='click: trigger.bind($data,&#39;go-login&#39;)'>
+<a data-bind='click: trigger.bind($data,&#39;login-go&#39;)'>
 Log In
 </a>
 </p>

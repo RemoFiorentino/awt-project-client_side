@@ -6,6 +6,6 @@ exports.createRepositories = function (options) {
     repositories['campaign'] = require('./campaign').createRepository(options);
     repositories['tasks'] = require('./tasks').createRepository(options);
     repositories['workers'] = require('./workers').createRepository(options);
-    repositories['current_user'] = ""
+    repositories['current_user'] = {};
     return repositories;
 };

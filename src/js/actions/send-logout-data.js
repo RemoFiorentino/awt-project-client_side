@@ -1,31 +1,32 @@
 /*jslint node: true, nomen: true */
 "use strict";
 
-var Promise = require('bluebird');
+var Promise = require('bluebird'),
+    $ = require('jquery');
+var option;
 
-function Action() { // add "options" parameters if needed
+function Action(options) { 
     // TODO: Global Initialization
-    /*
-    example:
-    this.collection = options.repositories.mail;
-    */
+    option = options.repositories;
 }
 Action.prototype.run = function (parameters, solve) { // add "onCancel" parameters if needed
-    // Parameters:
-
-    // TODO: Execution
-    /*
-    example:
-    mail.find({subject: 'Re: ' + data.subject})
-        .then(solve);
-    */
-    // THIS CAN BE REMOVED (BEGIN)
-    $.notify({message: 'send-logout-data'}, {allow_dismiss: true, type: 'success'});
-    solve({
-        event: 'on-logout-success', // on-logout-success
-        data: {
-        }
-    });
+    var data = {};
+    $.ajax({
+    url: "http://awt.ifmledit.org/api/auth",
+    type: "DELETE",
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "APIToken "+option.current_user.token);
+    },
+    contentType: "application/json",
+    success: function(result){
+        var myobj = result;
+        option.current_user = {}
+        alert("aguacate")
+        solve({
+            event: 'home',
+            data: data
+        });
+    }});
     // THIS CAN BE REMOVED (END)
 };
 

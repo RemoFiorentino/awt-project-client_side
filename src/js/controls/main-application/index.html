@@ -7,7 +7,7 @@
 <span class='icon-bar'></span>
 <span class='icon-bar'></span>
 </button>
-<a class='navbar-brand cursor--pointer' data-bind='click: trigger.bind($data,&#39;go-home&#39;)'>
+<a class='navbar-brand cursor--pointer' data-bind='click: trigger.bind($data,&#39;home&#39;)'>
 <img alt='Logo' class='img__width__1c5em pull-left' src='/remofiorentino/awt-project/www/images/logo.png'>
 <span class='vertical__middle'>
 Mountain
@@ -18,29 +18,49 @@ Flag
 </a>
 </div>
 <div class='collapse navbar-collapse' id='landmark-menu'>
-<ul class='nav navbar-nav navbar-right' data-bind='if: context.repositories[&#39;current_user&#39;] === &#39;&#39;'>
+<ul class='nav navbar-nav navbar-right' data-bind='if: logged() === false'>
 <li>
-<a data-bind='click: trigger.bind($data,&#39;go-login&#39;)'>
+<a data-bind='click: trigger.bind($data,&#39;login-go&#39;)'>
 <span aria-hidden='true' class='glyphicon glyphicon-log-in'></span>
 Login
 </a>
 </li>
 <li>
-<a data-bind='click: trigger.bind($data,&#39;go-register&#39;)'>
+<a data-bind='click: trigger.bind($data,&#39;register-go&#39;)'>
 <span aria-hidden='true' class='glyphicon glyphicon-inbox'></span>
 Register
 </a>
 </li>
 </ul>
-<ul class='nav navbar-nav navbar-right' data-bind='if: context.repositories[&#39;current_user&#39;] != &#39;&#39;'>
+<ul class='nav navbar-nav navbar-right' data-bind='if: logged() === true'>
 <li>
-<a data-bind='click: trigger.bind($data,&#39;logout-btn-pressed&#39;)'>
+<a>
+<b>
+Dear
+<span data-bind='text: user_name()'></span>
+</b>
+</a>
+</li>
+<li data-bind='if: manager()'>
+<a data-bind='click: trigger.bind($data,&#39;manager-go&#39;)'>
+<span aria-hidden='true' class='glyphicon glyphicon-picture'></span>
+Manager
+</a>
+</li>
+<li data-bind='if: !manager()'>
+<a data-bind='click: trigger.bind($data,&#39;task-go&#39;)'>
+<span aria-hidden='true' class='glyphicon glyphicon-log-out'></span>
+task
+</a>
+</li>
+<li>
+<a data-bind='click: trigger.bind($data,&#39;logout&#39;)'>
 <span aria-hidden='true' class='glyphicon glyphicon-log-out'></span>
 Logout
 </a>
 </li>
 <li>
-<a data-bind='click: trigger.bind($data,&#39;account-edit-btn-pressed&#39;)'>
+<a data-bind='click: trigger.bind($data,&#39;account-edit-go&#39;)'>
 <span aria-hidden='true' class='glyphicon glyphicon-user'></span>
 Edit Account
 </a>
@@ -74,8 +94,8 @@ Edit Account
 <c-image-upload-view class='container' params='context: context'></c-image-upload-view>
 </span>
 <!-- /login-form -->
-<span data-bind='if: active() === &#39;login-form&#39;'>
-<c-login-form class='container' params='context: context'></c-login-form>
+<span data-bind='if: active() === &#39;login-view&#39;'>
+<c-login-view class='container' params='context: context'></c-login-view>
 </span>
 <span data-bind='if: active() === &#39;logout-view&#39;'>
 <c-logout-view class='container' params='context: context'></c-logout-view>

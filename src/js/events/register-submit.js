@@ -10,11 +10,11 @@ exports.createEvent = function () { // add "options" parameter if needed
             ,'fullname' : data['fullname']
             ,'username' : data['username']
         };
-        var promise = context.actions['send-registration-data']({filters: packet});
-        context.runningActionsByContainer['register-form'].push(promise);
+        var promise = context.actions['send-registration-data']({filters: packet},context);
+        context.runningActionsByContainer['register-view'].push(promise);
         promise.then(function (result) {
-            context.runningActionsByContainer['register-form'].splice(
-                context.runningActionsByContainer['register-form'].indexOf(promise), 1
+            context.runningActionsByContainer['register-view'].splice(
+                context.runningActionsByContainer['register-view'].indexOf(promise), 1
             );
             if (result.event) {
                 context.events[result.event](context, result.data);

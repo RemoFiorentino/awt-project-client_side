@@ -24,6 +24,7 @@ exports.register = function () {
     require('./c-image-selection-form').register();
     require('./c-image-upload-form').register();
     require('./c-login-form').register();
+    require('./c-login-view').register();
     require('./c-list-campaign').register();
     require('./c-register-form').register();
     require('./c-register-view').register();

@@ -23,7 +23,7 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     // THIS CAN BE REMOVED (BEGIN)
     $.notify({message: 'change-campaign-state'}, {allow_dismiss: true, type: 'success'});
     solve({
-        event: 'on-change-campaign-state-result', // on-change-campaign-state-result
+        event: 'manager-go', // manager-go
         data: {
         }
     });

@@ -27,8 +27,8 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     // THIS CAN BE REMOVED (BEGIN)
     $.notify({message: 'send-create-campaign-data'}, {allow_dismiss: true, type: 'success'});
     solve({
-        event: 'on-create-campaign-failure', // on-create-campaign-failure
-        // event: 'on-create-campaign-success', // on-create-campaign-success
+        event: 'campaign-create-failure', // campaign-create-failure
+        // event: 'image-upload-go', // image-upload-go
         data: {
             'Location': '0',
         }

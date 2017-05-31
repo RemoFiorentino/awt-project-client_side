@@ -23,8 +23,8 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     // THIS CAN BE REMOVED (BEGIN)
     $.notify({message: 'send-image-selection'}, {allow_dismiss: true, type: 'success'});
     solve({
-        event: 'on-more-image-to-selected', // on-more-image-to-selected
-        // event: 'on-no-more-images-to-select', // on-no-more-images-to-select
+        event: 'image-selection-go', // image-selection-go
+        // event: 'task-go', // task-go
         data: {
         }
     });

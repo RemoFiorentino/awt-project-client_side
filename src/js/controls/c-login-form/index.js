@@ -14,31 +14,6 @@ function ViewModel(params) {
     self.trigger = function (id) {
         self.context.events[id](self.context, self.output);
     };
-    self.sendData = function() {
-        var self = this;
-        this.data = {
-            'password': self.output['password'],
-            'username': self.output['username'],
-        };
-        $.ajax({
-        url: "http://awt.ifmledit.org/api/auth",
-        type: "POST",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", "APIKey fb72e1fe-3583-11e7-a919-92ebcb67fe33");
-        },
-        data: JSON.stringify(this.data),
-        contentType: "application/json",
-        success: function(result){
-            alert("it works")
-        },
-          statusCode: {
-            400: function(xhr) {
-                var myobj = JSON.parse(xhr.responseText);
-                self.errors()['password'](myobj.error.password);
-                self.errors()['username'](myobj.error.username);
-            }
-        }})  
-    }
 }
 
 ViewModel.prototype.id = 'login-form';
@@ -46,6 +21,16 @@ ViewModel.prototype.id = 'login-form';
 ViewModel.prototype.waitForStatusChange = function () {
     return this._initializing ||
            Promise.resolve();
+};
+
+ViewModel.prototype.fill = function (errors_sent,fields_sent) {
+    if (!$.isEmptyObject(fields_sent)){
+        this.fields()['password'](fields_sent.password);
+        this.fields()['username'](fields_sent.username);
+    }
+    this.errors()['password'](errors_sent.password);
+    this.errors()['username'](errors_sent.username);
+    this.errors()['others'](errors_sent.others);
 };
 
 ViewModel.prototype._compute = function () {
@@ -61,6 +46,7 @@ ViewModel.prototype._compute = function () {
         errors = {
             'password': ko.observable(this.input['password-error']),
             'username': ko.observable(this.input['username-error']),
+            'others': ko.observable(),
         };
     fields['password'].subscribe(function (value) {
         self.output['password'] = value;
@@ -76,8 +62,10 @@ ViewModel.prototype._compute = function () {
 };
 
 
-ViewModel.prototype.init = function (options) {
+ViewModel.prototype.init = function (options,errors,fields) {
     options = options || {};
+    errors = errors || {};
+    fields = fields || {};
     this.output = undefined;
     this.fields({});
     this.errors({});
@@ -87,6 +75,7 @@ ViewModel.prototype.init = function (options) {
     this._initializing = new Promise(function (resolve) {
         setTimeout(function () {
             self._compute();
+            self.fill(errors,fields);
             resolve();
             self._initializing = undefined;
         }, 1);

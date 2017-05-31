@@ -15,35 +15,6 @@ function ViewModel(params) {
     self.trigger = function (id) {
         self.context.events[id](self.context, self.output);
     };
-    self.sendData = function() {
-        var self = this;
-        this.data = {
-            'type': self.output['account-type'],
-            'fullname': self.output['fullname'],
-            'password': self.output['password'],
-            'username': self.output['username'],
-        };
-        $.ajax({
-        url: "http://awt.ifmledit.org/api/user",
-        type: "POST",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", "APIKey fb72e1fe-3583-11e7-a919-92ebcb67fe33");
-        },
-        data: JSON.stringify(this.data),
-        contentType: "application/json",
-        success: function(result){
-            alert("it works")
-        },
-          statusCode: {
-            400: function(xhr) {
-                var myobj = JSON.parse(xhr.responseText);
-                self.errors()['account-type'](myobj.error.type);
-                self.errors()['fullname'](myobj.error.fullname);
-                self.errors()['password'](myobj.error.password);
-                self.errors()['username'](myobj.error.username);
-            }
-        }})  
-    }
 }
 
 ViewModel.prototype.id = 'register-form';
@@ -53,6 +24,18 @@ ViewModel.prototype.waitForStatusChange = function () {
            Promise.resolve();
 };
 
+ViewModel.prototype.fill = function (errors_sent,fields_sent) {
+    if (!$.isEmptyObject(fields_sent)){
+        this.fields()['account-type'](fields_sent.type);
+        this.fields()['fullname'](fields_sent.fullname);
+        this.fields()['password'](fields_sent.password);
+        this.fields()['username'](fields_sent.username);
+    }
+    this.errors()['account-type'](errors_sent.type);
+    this.errors()['fullname'](errors_sent.fullname);
+    this.errors()['password'](errors_sent.password);
+    this.errors()['username'](errors_sent.username);
+};
 
 ViewModel.prototype._compute = function () {
     this.output = {
@@ -60,7 +43,7 @@ ViewModel.prototype._compute = function () {
         'fullname': this.input['fullname'],
         'password': this.input['password'],
         'username': this.input['username'],
-    }
+    };
     var self = this,
         fields = {
             'account-type': ko.observable(this.input['account-type']),
@@ -95,8 +78,10 @@ ViewModel.prototype._compute = function () {
 };
 
 
-ViewModel.prototype.init = function (options) {
+ViewModel.prototype.init = function (options,errors,fields) {
     options = options || {};
+    errors = errors || {};
+    fields = fields || {};
     this.output = undefined;
     this.fields({});
     this.errors({});
@@ -106,6 +91,7 @@ ViewModel.prototype.init = function (options) {
     this._initializing = new Promise(function (resolve) {
         setTimeout(function () {
             self._compute();
+            self.fill(errors,fields);
             resolve();
             self._initializing = undefined;
         }, 1);

@@ -24,8 +24,8 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     // THIS CAN BE REMOVED (BEGIN)
     $.notify({message: 'send-image-upload-data'}, {allow_dismiss: true, type: 'success'});
     solve({
-        event: 'on-image-upload-failure', // on-image-upload-failure
-        // event: 'on-image-upload-success', // on-image-upload-success
+        event: 'image-upload-failure', // image-upload-failure
+        // event: 'worker-select-go', // worker-select-go
         data: {
             'location': '0',
         }

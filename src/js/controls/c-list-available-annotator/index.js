@@ -15,7 +15,7 @@ function ViewModel(params) {
     self.select = function() {
         self.selected(this.id);
         self.output = this;
-        self.trigger.call(this, 'd80e9591-d019-4eb7-b1f3-205377663d62');
+        self.trigger.call(this, 'annotator-submit-to-campaign');
     };
 
     self.trigger = function (id) {

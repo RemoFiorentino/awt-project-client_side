@@ -23,7 +23,7 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     // THIS CAN BE REMOVED (BEGIN)
     $.notify({message: 'send-workers-to-campaign'}, {allow_dismiss: true, type: 'success'});
     solve({
-        event: 'on-send-worker-success', // on-send-worker-success
+        event: 'worker-select-go', // worker-select-go
         data: {
         }
     });

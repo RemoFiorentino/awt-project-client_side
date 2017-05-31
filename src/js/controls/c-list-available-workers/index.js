@@ -15,7 +15,7 @@ function ViewModel(params) {
     self.select = function() {
         self.selected(this.id);
         self.output = this;
-        self.trigger.call(this, '2c13eb15-2680-4393-a576-b5f2cc847b95');
+        self.trigger.call(this, 'worker-submit-to-campaign');
     };
 
     self.trigger = function (id) {

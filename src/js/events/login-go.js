@@ -3,9 +3,9 @@
 
 exports.createEvent = function () { // add "options" parameter if needed
     return function (context) {
-        if (!context.vms['home-bar']) {
-            context.top.active('home-bar');
+        if (!context.vms['login-view']) {
+            context.top.active('login-view');
         }
-        context.vms['home-bar'].init();
+        context.vms['login-view'].init();
     };
 };

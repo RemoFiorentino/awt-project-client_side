@@ -6,35 +6,47 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand.cursor--pointer{"data-bind" => "click: trigger.bind($data,'go-home')"}
+      %a.navbar-brand.cursor--pointer{"data-bind" => "click: trigger.bind($data,'home')"}
         %img.img__width__1c5em.pull-left{:alt => "Logo", :src => "/remofiorentino/awt-project/www/images/logo.png"}/
         %span.vertical__middle 
           Mountain
           %b.text__color--green
             Flag
     #landmark-menu.collapse.navbar-collapse
-      %ul.nav.navbar-nav.navbar-right{"data-bind" => "if: context.repositories['current_user'] === ''"}
+      %ul.nav.navbar-nav.navbar-right{"data-bind" => "if: logged() === false"}
         %li
-          %a{"data-bind" => "click: trigger.bind($data,'go-login')"}
+          %a{"data-bind" => "click: trigger.bind($data,'login-go')"}
             %span.glyphicon.glyphicon-log-in{"aria-hidden" => "true"}
             Login
         %li
-          %a{"data-bind" => "click: trigger.bind($data,'go-register')"}
+          %a{"data-bind" => "click: trigger.bind($data,'register-go')"}
             %span.glyphicon.glyphicon-inbox{"aria-hidden" => "true"}
             Register
-      %ul.nav.navbar-nav.navbar-right{"data-bind" => "if: context.repositories['current_user'] != ''"}
+      %ul.nav.navbar-nav.navbar-right{"data-bind" => "if: logged() === true"}
         %li
-          %a{"data-bind" => "click: trigger.bind($data,'logout-btn-pressed')"}
+          %a
+            %b
+              Dear
+              %span{"data-bind" => "text: user_name()"}
+        %li{"data-bind" => "if: manager()"}
+          %a{"data-bind" => "click: trigger.bind($data,'manager-go')"}
+            %span.glyphicon.glyphicon-picture{"aria-hidden" => "true"}
+            Manager
+        %li{"data-bind" => "if: !manager()"}
+          %a{"data-bind" => "click: trigger.bind($data,'task-go')"}
+            %span.glyphicon.glyphicon-log-out{"aria-hidden" => "true"}
+            task
+        %li
+          %a{"data-bind" => "click: trigger.bind($data,'logout')"}
             %span.glyphicon.glyphicon-log-out{"aria-hidden" => "true"}
             Logout
         %li
-          %a{"data-bind" => "click: trigger.bind($data,'account-edit-btn-pressed')"}
+          %a{"data-bind" => "click: trigger.bind($data,'account-edit-go')"}
             %span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
             Edit Account
 
 
 // %line-drawer{:params => "context:context,src: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Matterhorn_Riffelsee_2005-06-11.jpg', pen: 10, line: line"}
-
 .container
   .row
     %span{"data-bind" => "if: active() === 'account-edit-view'"}
@@ -52,8 +64,8 @@
     %span{"data-bind" => "if: active() === 'image-upload-view'"}
       %c-image-upload-view.container{:params => "context: context"}
     //login-form
-    %span{"data-bind" => "if: active() === 'login-form'"}
-      %c-login-form.container{:params => "context: context"}
+    %span{"data-bind" => "if: active() === 'login-view'"}
+      %c-login-view.container{:params => "context: context"}
     %span{"data-bind" => "if: active() === 'logout-view'"}
       %c-logout-view.container{:params => "context: context"}
     %span{"data-bind" => "if: active() === 'manager-view'"}

@@ -15,7 +15,7 @@ function ViewModel(params) {
     self.select = function() {
         self.selected(this.id);
         self.output = this;
-        self.trigger.call(this, '496ca6e1-d56b-4d3d-9567-ca80fbeeb9e5');
+        self.trigger.call(this, 'campaign-show');
     };
 
     self.trigger = function (id) {

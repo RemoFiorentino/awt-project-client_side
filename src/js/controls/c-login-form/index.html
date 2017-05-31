@@ -3,6 +3,9 @@
 <fieldset>
 <legend class='text-center'>Log In</legend>
 <form>
+<div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;others&#39;]}'>
+<h5 class='help-block text-center' data-bind='text: errors()[&#39;others&#39;]' id='login-form_field_error'></h5>
+</div>
 <div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;username&#39;]}'>
 <label class='control-label' data-bind='css: {active: fields()[&#39;username&#39;]}, attr: {&#39;data-error&#39;: errors()[&#39;username&#39;]}' for='login-form_field_1'>Username</label>
 <input aria-describedby='login-form_field_1_error' class='form-control validate' data-bind='textInput: fields()[&#39;username&#39;]' id='login-form_field_1' placeholder='Username' type='text'>
@@ -16,13 +19,13 @@
 </form>
 <div class='row'>
 <div class='text-center margin__top--20px'>
-<a class='btn btn-primary' data-bind='click: sendData'>
+<a class='btn btn-primary' data-bind='click: trigger.bind($data, &#39;login-submit&#39;)'>
 LOG IN
 </a>
 <br>
 <p class='margin__top--10px'>
 I don’t have an account,
-<a data-bind='click: trigger.bind($data,&#39;go-register&#39;)'>
+<a data-bind='click: trigger.bind($data,&#39;register-go&#39;)'>
 Register
 </a>
 </p>
