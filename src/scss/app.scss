@@ -8,7 +8,7 @@
 }
 .vertical{
     &__middle{
-        vertical-align: middle;       
+        vertical-align: middle !important;       
     }
 }
 
@@ -17,6 +17,11 @@
         &--green{
             color: #28B62C;    
         }
+    }
+    &__allign{
+      &--left{
+        text-align: left;
+      }
     }
 }
 

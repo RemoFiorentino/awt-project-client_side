@@ -23,7 +23,6 @@ exports.createEvent = function () { // add "options" parameter if needed
         success: function(result){
             var myobj = result;
             context.repositories.current_user = {}
-            alert("aguacate")
             if (!context.vms['home-bar']) {
                 context.top.active('home-bar');
             }

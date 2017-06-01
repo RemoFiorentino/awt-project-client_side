@@ -1,1 +1,6 @@
-<span>    <!-- list-campaign -->    <c-list-campaign params="context: context"></c-list-campaign>    <a class="col-xs-2 btn btn-primary" data-bind="click: trigger.bind($data,'campaign-create')">campaign-create</a>    <a class="col-xs-2 btn btn-primary" data-bind="click: trigger.bind($data,'campaign-edit-go')">campaign-edit-go</a>    <a class="col-xs-2 btn btn-primary" data-bind="click: trigger.bind($data,'campaign-change-state')">campaign-change-state</a></span>
+<span>
+<a class='col-xs-2 btn btn-primary' data-bind='click: trigger.bind($data,&#39;campaign-create&#39;)'>Create a Campaign</a>
+<a class='col-xs-2 btn btn-primary' data-bind='click: trigger.bind($data,&#39;campaign-edit-go&#39;)'>campaign-edit-go</a>
+<a class='col-xs-2 btn btn-primary' data-bind='click: trigger.bind($data,&#39;campaign-change-state&#39;)'>campaign-change-state</a>
+<c-list-campaign params='context: context'></c-list-campaign>
+</span>

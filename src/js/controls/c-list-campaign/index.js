@@ -2,7 +2,8 @@
 "use strict";
 
 var ko = require('knockout'),
-    Promise = require('bluebird');
+    Promise = require('bluebird'),
+    $ = require('jquery');
 
 function ViewModel(params) {
     var self = this;
@@ -17,13 +18,30 @@ function ViewModel(params) {
         self.output = this;
         self.trigger.call(this, 'campaign-show');
     };
-
+    self.select_trigger = function (item,id) {
+        self.context.events[id](self.context, this);
+    };
     self.trigger = function (id) {
         self.context.events[id](self.context, this);
     };
 }
 
 ViewModel.prototype.id = 'list-campaign';
+
+ViewModel.prototype.get_data = function(context){
+    var self = this;
+    $.ajax({
+    url: "http://awt.ifmledit.org/api/campaign",
+    type: "GET",
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "APIToken "+ context.repositories.current_user.token);
+    },
+    success: function(result){
+        var myobj = result;
+        self.items(myobj.campaigns);
+    }
+    });
+};
 
 ViewModel.prototype.fields = {
     id: 1
@@ -67,6 +85,7 @@ ViewModel.prototype.init = function (options) {
     this._initializing = new Promise(function (resolve) {
         setTimeout(function () {
             self._compute();
+            self.get_data(self.context);
             resolve();
             self._initializing = undefined;
         }, 1);

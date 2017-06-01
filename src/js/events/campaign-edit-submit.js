@@ -10,6 +10,7 @@ exports.createEvent = function () { // add "options" parameter if needed
             ,'name' : data['name']
             ,'selection_replica' : data['selection_replica']
             ,'threshold' : data['threshold']
+            ,'id': data['id']
         };
         var promise = context.actions['send-edit-campaign']({filters: packet});
         context.runningActionsByContainer['edit-campaign-view'].push(promise);

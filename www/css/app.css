@@ -2,10 +2,13 @@
   width: 1.5em; }
 
 .vertical__middle {
-  vertical-align: middle; }
+  vertical-align: middle !important; }
 
 .text__color--green {
   color: #28B62C; }
+
+.text__allign--left {
+  text-align: left; }
 
 .margin__center {
   margin: 0 auto; }

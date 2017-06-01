@@ -16,7 +16,6 @@ function Repository(options) {
         filename: 'tasks',
         inMemoryOnly: true
     }));
-    this.db.insert(require('./default'));
     // TODO: remove this END
 }
 
