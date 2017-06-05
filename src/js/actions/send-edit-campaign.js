@@ -18,7 +18,6 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     parameters['selection_replica']
     parameters['threshold']
     parameters['id']
-    alert(JSON.stringify(parameters))
     var data = {};
     var datos = {
         "annotation_replica": parseInt(parameters['annotation_replica']),
@@ -37,7 +36,7 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     contentType: "application/json",
     success: function(result){
         var myobj = result;
-        datos.url = parameters['id'];
+        datos.id = parameters['id'];
         solve({
             event: 'image-upload-go', 
             data: datos

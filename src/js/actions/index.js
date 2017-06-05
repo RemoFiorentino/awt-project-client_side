@@ -11,7 +11,6 @@ exports.createActions = function (options) {
         ,'send-image-upload-data': require('./send-image-upload-data').createAction(options)
         ,'send-images-annotation': require('./send-images-annotation').createAction(options)
         ,'send-logout-data': require('./send-logout-data').createAction(options)
-        ,'send-workers-to-campaign': require('./send-workers-to-campaign').createAction(options)
         ,'send-annotator-to-campaign': require('./send-annotator-to-campaign').createAction(options)
         ,'send-login-data': require('./send-login-data').createAction(options)
         ,'send-registration-data': require('./send-registration-data').createAction(options)

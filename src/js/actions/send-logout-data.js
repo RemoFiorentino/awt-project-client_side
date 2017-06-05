@@ -21,7 +21,6 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     success: function(result){
         var myobj = result;
         option.current_user = {}
-        alert("aguacate")
         solve({
             event: 'home',
             data: data

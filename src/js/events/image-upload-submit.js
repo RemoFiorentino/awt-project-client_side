@@ -6,7 +6,8 @@ exports.createEvent = function () { // add "options" parameter if needed
         data = data || {};
         var packet = {
             'image' : data['image']
-            ,'name' : data['name']
+            ,'id' : data['id']
+            ,'images': data['images']
         };
         var promise = context.actions['send-image-upload-data']({filters: packet});
         context.runningActionsByContainer['image-upload-view'].push(promise);

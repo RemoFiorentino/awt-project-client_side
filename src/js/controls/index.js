@@ -27,10 +27,7 @@ exports.register = function () {
     require('./c-list-campaign').register();
     require('./c-register-form').register();
     require('./c-register-view').register();
-    require('./c-campaign-worker-list').register();
-    require('./c-list-available-workers').register();
-    require('./c-list-available-annotator').register();
-    require('./c-selector-list').register();
-    require('./c-annotator-list').register();
+    require('./c-task-worker-list').register();
+    require('./c-worker-select-list').register();
     require('./c-line-drawer').register();
 };

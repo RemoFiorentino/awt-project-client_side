@@ -6,7 +6,7 @@ var ko = require('knockout'),
 
 function ViewModel(params) {
     var self = this;
-    self._repository = params.context.repositories['workers'];
+    self._repository = params.context.repositories['tasks'];
     self.context = params.context;
     self.status = ko.observable('');
     self.selected = ko.observable(undefined);
@@ -15,7 +15,6 @@ function ViewModel(params) {
     self.select = function() {
         self.selected(this.id);
         self.output = this;
-        self.trigger.call(this, 'annotator-submit-to-campaign');
     };
 
     self.trigger = function (id) {
@@ -23,12 +22,15 @@ function ViewModel(params) {
     };
 }
 
-ViewModel.prototype.id = 'list-available-annotator';
+ViewModel.prototype.id = 'task-worker-list';
 
 ViewModel.prototype.fields = {
     id: 1
-    ,'fullname': 1
-    ,'id': 1
+    ,'accepted': 1
+    ,'annotated': 1
+    ,'available': 1
+    ,'rejected': 1
+    ,'type': 1
 };
 
 ViewModel.prototype.waitForStatusChange = function () {
@@ -71,7 +73,7 @@ ViewModel.prototype.init = function (options) {
 };
 
 exports.register = function () {
-    ko.components.register('c-list-available-annotator', {
+    ko.components.register('c-task-worker-list', {
         viewModel: {
             createViewModel: function (params, componentInfo) {
                 var vm = new ViewModel(params);

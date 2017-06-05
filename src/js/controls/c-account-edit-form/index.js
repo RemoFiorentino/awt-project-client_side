@@ -17,7 +17,6 @@ function ViewModel(params) {
 }
 
 ViewModel.prototype.fill = function (errors_sent) {
-    alert(JSON.stringify(this.context.repositories['current_user']))
     this.fields()['fullname'](this.context.repositories['current_user'].fullname);
     this.fields()['password'](this.context.repositories['current_user'].password);
     this.errors()['fullname'](errors_sent.fullname);

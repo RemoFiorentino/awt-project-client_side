@@ -30,7 +30,6 @@ exports.createEvents = function (options) {
         ,'login-submit': require('./login-submit').createEvent(options)
         ,'campaign-show': require('./campaign-show').createEvent(options)
         ,'register-submit': require('./register-submit').createEvent(options)
-        ,'worker-submit-to-campaign': require('./worker-submit-to-campaign').createEvent(options)
         ,'annotator-submit-to-campaign': require('./annotator-submit-to-campaign').createEvent(options)
         ,'login-failure': require('./login-failure').createEvent(options)
         ,'register-failure': require('./register-failure').createEvent(options)

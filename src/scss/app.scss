@@ -24,6 +24,35 @@
       }
     }
 }
+.height{
+  &__max{
+    &--170{
+      max-height: 170px;
+    }
+  }
+  &__min{
+    &--170{
+      min-height: 170px;
+    }
+  }
+}
+.width{
+  &__max{
+    &--170{
+      max-width: 170px;
+    }
+  }
+  &__min{
+    &--170{
+      min-width: 170px;
+    }
+  }
+}
+.display{
+  &--block{
+    display: block;
+  }
+}
 
 .margin{
   &__center{
@@ -51,6 +80,8 @@ a{
 a:hover{
   animation: shake 1.5s cubic-bezier(.36,.07,.19,.97) both;
 }
+
+
 
 //keyframes
 

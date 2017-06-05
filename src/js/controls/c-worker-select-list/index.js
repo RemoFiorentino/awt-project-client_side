@@ -7,87 +7,91 @@ var ko = require('knockout'),
 
 function ViewModel(params) {
     var self = this;
-    self._repository = params.context.repositories['campaign'];
+    self._repository = params.context.repositories['workers'];
     self.context = params.context;
     self.status = ko.observable('');
-    self.selected = ko.observable(undefined);
-    self.items = ko.observableArray([]);
+    self.workers = ko.observableArray();
 
-    self.select = function() {
-        self.selected(this.id);
-        self.output = this;
-        self.trigger.call(this, 'campaign-show');
-    };
-    self.select_trigger = function (item,id) {
-        self.context.events[id](self.context, this);
-    };
     self.trigger = function (id) {
         self.context.events[id](self.context, this);
     };
-    self.change_state = function(){
-        var campaign = this;
-        var type = undefined;
-        if(campaign.status() == "ready"){
-            type = "POST";
+    self.selectorBtn = function(){
+        var worker = this;
+        var type = "POST";
+        if(!worker.selector()){
+            type= "POST";
         }else{
-            type = "DELETE";            
+            type= "DELETE";
         }
         $.ajax({
-            url: "http://awt.ifmledit.org" + campaign.id + "/execution",
+            url: "http://awt.ifmledit.org" + worker.id() + "/selection",
             type: type,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader ("Authorization", "APIToken "+ self.context.repositories.current_user.token);
             },
             success: function(result){
-                if(campaign.status() == "ready"){
-                    campaign.status("started");
-                }else{
-                    campaign.status("ended");            
-                }
+                var myobj = result;
+                worker.selector(!worker.selector());
             }
-        });  
+        });
     };
+    self.annotatorBtn = function(){
+        var worker = this;
+        var type = "POST";
+        if(!worker.annotator()){
+            type= "POST";
+        }else{
+            type= "DELETE";
+        }
+        $.ajax({
+            url: "http://awt.ifmledit.org" + worker.id() + "/annotation",
+            type: type,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "APIToken "+ self.context.repositories.current_user.token);
+            },
+            success: function(result){
+                var myobj = result;
+                worker.annotator(!worker.annotator());
+            }
+        });
+    };
+    self.delete = function(){
+        
+    }
 }
-var proto_campaign = function(id,name,status){
+
+var proto_worker = function(id,fullname,selector,annotator){
     var self = {};
-    self.id = id;
-    self.name = name;
-    self.status = ko.observable(status);
+    self.id = ko.observable(id);
+    self.fullname = ko.observable(fullname);
+    self.selector = ko.observable(selector);
+    self.annotator = ko.observable(annotator);
     return self;
-};
+}
 
-ViewModel.prototype.id = 'list-campaign';
-
-ViewModel.prototype.get_data = function(context){
+ViewModel.prototype.get_data = function(context , id){
     var self = this;
     $.ajax({
-    url: "http://awt.ifmledit.org/api/campaign",
+    url: "http://awt.ifmledit.org" + id + "/worker",
     type: "GET",
     beforeSend: function (xhr) {
         xhr.setRequestHeader ("Authorization", "APIToken "+ context.repositories.current_user.token);
     },
     success: function(result){
         var myobj = result;
-        //self.items(myobj.campaigns);
-        myobj = myobj.campaigns
+        myobj = myobj.workers
+        //self.workers(myobj.workers);
         var temp =[];
         $.each(myobj, function (i, obj) {
-            var newObj =  proto_campaign(obj.id,obj.name,obj.status);
+            var newObj =  proto_worker(obj.id,obj.fullname,obj.selector,obj.annotator);
             temp.push(newObj); 
         }); 
-        self.items(temp)
+        self.workers(temp)
     }
     });
 };
 
-ViewModel.prototype.fields = {
-    id: 1
-    ,'campaign-edit': 1
-    ,'campaign-name': 1
-    ,'campaign-next_action': 1
-    ,'campaign-show': 1
-    ,'campaign-state': 1
-};
+ViewModel.prototype.id = 'worker-select-list';
 
 ViewModel.prototype.waitForStatusChange = function () {
     return this._computing ||
@@ -101,28 +105,22 @@ ViewModel.prototype._compute = function() {
     }
     var self = this;
     this._computing = this._repository.find(this.filters, this.fields).then(function (items) {
-        self.selected(undefined);
-        self.items(items);
-        if (items.length) {
-            self.selected(items[0].id);
-            self.output = items[0];
-        }
+        self.workers(items);
         self.status('computed');
         self._computing = undefined;
     });
 };
 
 
-ViewModel.prototype.init = function (options) {
+ViewModel.prototype.init = function (options,id) {
     options = options || {};
-    this.output = undefined;
     this.filters = options.input || {};
     this.status('ready');
     var self = this;
     this._initializing = new Promise(function (resolve) {
         setTimeout(function () {
             self._compute();
-            self.get_data(self.context);
+            self.get_data(self.context,id);
             resolve();
             self._initializing = undefined;
         }, 1);
@@ -130,7 +128,7 @@ ViewModel.prototype.init = function (options) {
 };
 
 exports.register = function () {
-    ko.components.register('c-list-campaign', {
+    ko.components.register('c-worker-select-list', {
         viewModel: {
             createViewModel: function (params, componentInfo) {
                 var vm = new ViewModel(params);

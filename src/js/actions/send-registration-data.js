@@ -19,7 +19,6 @@ Action.prototype.run = function (parameters, solve,options) { // add "onCancel" 
     parameters['fullname'];
     parameters['password'];
     parameters['username'];
-    //alert(JSON.stringify(context));
     // TODO: Execution
     /*
     example:
@@ -55,7 +54,6 @@ Action.prototype.run = function (parameters, solve,options) { // add "onCancel" 
         ),
         contentType: "application/json",
         success: function(result){
-            alert(result)
             var myobj = result;
             option.current_user = {
                 "fullname": datos.fullname,

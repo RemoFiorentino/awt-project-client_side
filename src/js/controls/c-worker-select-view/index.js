@@ -24,10 +24,7 @@ function ViewModel(params) {
 
 ViewModel.prototype.id = 'worker-select-view';
 ViewModel.prototype.children = [
-    'list-available-workers' // list-available-workers
-    ,'list-available-annotator' // list-available-annotator
-    ,'selector-list' // selector-list
-    ,'annotator-list' // annotator-list
+    'worker-select-list' // list-available-workers
 ];
 
 exports.register = function () {

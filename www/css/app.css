@@ -10,6 +10,21 @@
 .text__allign--left {
   text-align: left; }
 
+.height__max--170 {
+  max-height: 170px; }
+
+.height__min--170 {
+  min-height: 170px; }
+
+.width__max--170 {
+  max-width: 170px; }
+
+.width__min--170 {
+  min-width: 170px; }
+
+.display--block {
+  display: block; }
+
 .margin__center {
   margin: 0 auto; }
 
