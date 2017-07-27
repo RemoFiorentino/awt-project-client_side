@@ -60,3 +60,5 @@ typings/
 # generated files
 # Remo: I like having the generated files in git XD
 # www
+
+*.haml
