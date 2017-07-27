@@ -1,0 +1,50 @@
+<div class='well'>
+<div class='row'>
+<div class='col-sm-9 col-xs-12'>
+<legend>
+Campaigns
+</legend>
+</div>
+<div class='col-sm-3 col-xs-12 text-right'>
+<a class='btn btn-primary' data-bind='click: trigger.bind($data,&#39;campaign-create&#39;)'>Create a Campaign</a>
+</div>
+</div>
+<table class='table table-hover table-striped'>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Status</th>
+<th class='text-right'>Actions</th>
+<th></th>
+</tr>
+</thead>
+<tbody data-bind='foreach: { data: items, as: &#39;item&#39; }'>
+<tr>
+<td class='vertical__middle' data-bind='text: ($index()+1)'></td>
+<td class='text-capitalize vertical__middle' data-bind='text: $data[&#39;name&#39;]' style='white-space: pre-wrap;'></td>
+<td class='text-capitalize vertical__middle' data-bind='text: $data[&#39;status&#39;]()' style='white-space: pre-wrap;'></td>
+<td class='text-right'>
+<a class='btn btn-info' data-bind='click: $parent.trigger.bind(item,&#39;campaign-show&#39;)' data-original-title='Show' data-placement='top' data-toggle='tooltip' title=''>
+<span aria-hidden='true' class='glyphicon glyphicon-zoom-in'></span>
+</a>
+<span data-bind='if: item.status() === &#39;ready&#39;'>
+<a class='btn btn-warning' data-bind='click: $parent.trigger.bind(item,&#39;campaign-edit-go&#39;)' data-original-title='Edit' data-placement='top' data-toggle='tooltip' title=''>
+<span aria-hidden='true' class='glyphicon glyphicon-edit'></span>
+</a>
+</span>
+<span data-bind='if: item.status() === &#39;ready&#39;'>
+<a class='btn btn-success' data-bind='click: $parent.change_state' data-original-title='Edit' data-placement='top' data-toggle='tooltip' title=''>
+PUBLISH
+</a>
+</span>
+<span data-bind='if: item.status() === &#39;started&#39;'>
+<a class='btn btn-success' data-bind='click: $parent.change_state' data-original-title='Edit' data-placement='top' data-toggle='tooltip' title=''>
+TERMINATE
+</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>

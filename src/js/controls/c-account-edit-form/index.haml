@@ -1,0 +1,25 @@
+%span
+  .well.col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1
+    %fieldset
+      %legend.text-center Edit Account
+      %form
+        .form-group{"data-bind" => "css: {'has-error': errors()['others']}"}
+          %h5#login-form_field_error.help-block.text-center{"data-bind" => "text: errors()['others']"}
+        .form-group{"data-bind" => "css: {'has-error': errors()['fullname']}"}
+          %label.control-label{"data-bind" => "css: {active: fields()['fullname']}, attr: {'data-error': errors()['fullname']}", :for => "account-edit-form_field_0"} Fullname
+          %input#account-edit-form_field_0.form-control.validate{"aria-describedby" => "account-edit-form_field_0_error", "data-bind" => "value: fields()['fullname']", :type => "text"}/
+          %span#account-edit-form_field_0_error.help-block{"data-bind" => "text: errors()['fullname']"}
+        .form-group{"data-bind" => "css: {'has-error': errors()['password']}"}
+          %label.control-label{"data-bind" => "css: {active: fields()['password']}, attr: {'data-error': errors()['password']}", :for => "account-edit-form_field_1"} Password
+          %input#account-edit-form_field_1.form-control.validate{"aria-describedby" => "account-edit-form_field_1_error", "data-bind" => "value: fields()['password']", :type => "password"}/
+          %span#account-edit-form_field_1_error.help-block{"data-bind" => "text: errors()['password']"}
+        .form-group{"data-bind" => "css: {'has-error': errors()['confirm_password']}"}
+          %label.control-label{"data-bind" => "css: {active: fields()['confirm_password']}, attr: {'data-error': errors()['confirm_password']}", :for => "account-edit-form_field_1"} Confirm Password
+          %input#account-edit-form_field_1.form-control.validate{"aria-describedby" => "account-edit-form_field_1_error", "data-bind" => "textInput: fields()['confirm_password']", :type => "password"}/
+          %span#account-edit-form_field_1_error.help-block{"data-bind" => "text: errors()['confirm_password']"}
+      .row
+        .text-center.margin__top--20px
+          %a.btn.btn-primary{"data-bind" => "click: trigger.bind($data, 'account-edit-submit')"}
+            Submit
+          %br
+          %hr.separator.margin__center

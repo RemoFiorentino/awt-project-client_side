@@ -1,0 +1,53 @@
+.well
+  .row
+    .col-sm-9.col-xs-12
+      %legend
+        Tasks
+  %table.table.table-hover.table-striped
+    %thead
+      %tr
+        %th #
+        %th Type
+        %th.text-right Actions
+    %tbody{"data-bind" => "foreach: { data: tasks, as: 'task' }"}
+      %tr
+        %td.vertical__middle{"data-bind" => "text: ($index()+1)"}
+        %td.text-capitalize.vertical__middle{"data-bind" => "text: task['type']", :style => "white-space: pre-wrap;"}
+        %td.text-right
+          %a.btn.btn-info{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button","data-bind" => "click: $parent.modal.bind(task)"}
+            %span.glyphicon.glyphicon-zoom-in{"aria-hidden" => "true"}
+          %span{"data-bind" => "if: task['type'] == 'selection'"}
+            %a.btn.btn-primary{"data-bind" => "click: $parent.trigger.bind($data, 'image-selection-go','true'), clickBubble: false"} 
+              %span.glyphicon.glyphicon-flag{"aria-hidden" => "true"}
+                SELECTION
+          %span{"data-bind" => "if: task.type == 'annotation'"}
+            %a.btn.btn-primary{"data-bind" => "click: $parent.trigger.bind($data, 'image-annotation-go','true'), clickBubble: false"}
+              %span.glyphicon.glyphicon-pencil{"aria-hidden" => "true"}
+                ANNOTATION
+/ Modal
+#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title Task Statistics
+      .modal-body
+        %ul{"data-bind" => "if: selectedTask()['type'] == 'selection'"}
+          %li
+            %b Available:
+            %span{"data-bind" => "text: available()"}
+          %li
+            %b Accepted:
+            %span{"data-bind" => "text: accepted()"}
+          %li
+            %b Rejected:
+            %span{"data-bind" => "text: rejected()"}
+        %ul{"data-bind" => "if: selectedTask().type == 'annotation'"}
+          %li
+            %b Available:
+            %span{"data-bind" => "text: available()"}
+          %li
+            %b Annotated:
+            %span{"data-bind" => "text: annotated()"}
+

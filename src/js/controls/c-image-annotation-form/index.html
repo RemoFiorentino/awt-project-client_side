@@ -1,0 +1,54 @@
+<div class='well'>
+<div class='row'>
+<div class='col-xs-6 col-xs-offset-3'>
+<legend class='text-center'>
+Annotate the Image!!
+</legend>
+</div>
+</div>
+<div data-bind='if: image_presence()'>
+<br>
+<div class='row'>
+<div class='col-xs-12 col-sm-5 col-sm-offset-1 text-right'>
+<a class='btn btn-primary' data-bind='click: clear'>
+Clear
+</a>
+</div>
+<div class='col-xs-12 col-sm-5'>
+<a class='btn btn-primary' data-bind='click: trigger.bind($data, &#39;image-annotation-submit&#39;)'>
+Submit
+</a>
+</div>
+</div>
+<div class='row' data-bind='if: imgUrl() != undefined'>
+<div class='col-xs-12 col-sm-10 col-sm-offset-1'>
+<div class='panel panel-default'>
+<div class='panel-body text-center'>
+<line-drawer params='context: context, src: &#39;http://awt.ifmledit.org&#39; + imgUrl(), pen: size, line: line'></line-drawer>
+<!-- /%div{"data-bind" => "component: { name: 'line-drawer', params: {context: context, src: 'http://awt.ifmledit.org' + imgUrl(), pen: size(), line: line()}}"} -->
+<!-- /%line-drawer{:params => "context:context,src: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Matterhorn_Riffelsee_2005-06-11.jpg', pen: 10, line: line"} -->
+<!-- /%img.img-responsive.center-block{"data-bind" => "attr:{src:  'http://awt.ifmledit.org' + imgUrl () || '#' }"}/ -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<div data-bind='if: !image_presence()'>
+<div class='row'>
+<div class='col-xs-12 col-sm-10 col-sm-offset-1'>
+<h3 class='text-center' data-bind='text: error_text'></h3>
+</div>
+</div>
+<div class='row'>
+<div class='text-center margin__top--20px'>
+<p class='margin__top--10px'>
+Go back to
+<a data-bind='click: trigger.bind($data,&#39;task-go&#39;)'>
+Tasks
+</a>
+</p>
+<hr class='separator margin__center'>
+</div>
+</div>
+</div>
+</div>

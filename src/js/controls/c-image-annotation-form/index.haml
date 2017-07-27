@@ -1,0 +1,33 @@
+.well
+  .row
+    .col-xs-6.col-xs-offset-3
+      %legend.text-center
+        Annotate the Image!!
+  %div{"data-bind" => "if: image_presence()"}
+    %br
+    .row
+      .col-xs-12.col-sm-5.col-sm-offset-1.text-right
+        %a.btn.btn-primary{"data-bind" => "click: clear"}
+          Clear
+      .col-xs-12.col-sm-5
+        %a.btn.btn-primary{"data-bind" => "click: trigger.bind($data, 'image-annotation-submit')"} 
+          Submit
+    .row{"data-bind" => "if: imgUrl() != undefined"}
+      .col-xs-12.col-sm-10.col-sm-offset-1
+        .panel.panel-default
+          .panel-body.text-center
+            %line-drawer{:params => "context: context, src: 'http://awt.ifmledit.org' + imgUrl(), pen: size, line: line"}
+            //%div{"data-bind" => "component: { name: 'line-drawer', params: {context: context, src: 'http://awt.ifmledit.org' + imgUrl(), pen: size(), line: line()}}"}
+            //%line-drawer{:params => "context:context,src: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Matterhorn_Riffelsee_2005-06-11.jpg', pen: 10, line: line"}
+            //%img.img-responsive.center-block{"data-bind" => "attr:{src:  'http://awt.ifmledit.org' + imgUrl () || '#' }"}/
+  %div{"data-bind" => "if: !image_presence()"}
+    .row
+      .col-xs-12.col-sm-10.col-sm-offset-1
+        %h3.text-center{"data-bind" => "text: error_text"}
+    .row
+      .text-center.margin__top--20px
+        %p.margin__top--10px
+          Go back to  
+          %a{"data-bind" => "click: trigger.bind($data,'task-go')"}
+            Tasks
+        %hr.separator.margin__center

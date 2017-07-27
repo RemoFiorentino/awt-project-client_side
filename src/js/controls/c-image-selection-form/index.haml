@@ -1,0 +1,30 @@
+.well
+  .row
+    .col-xs-6.col-xs-offset-3
+      %legend.text-center
+        Validate the Image!!
+  %div{"data-bind" => "if: image_presence()"}
+    .row
+      .col-xs-3.col-xs-offset-3.text-right
+        %a.btn.btn-success{"data-bind" => "click: trigger.bind($data, 'image-selection-submit', 'true')"}
+          %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
+      .col-xs-3
+        %a.btn.btn-danger{"data-bind" => "click: trigger.bind($data, 'image-selection-submit', 'false')"} 
+          %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
+    %br
+    .row{"data-bind" => "if: imgUrl() != undefined"}
+      .col-xs-12.col-sm-10.col-sm-offset-1
+        .panel.panel-default
+          .panel-body
+            %img.img-responsive.center-block{"data-bind" => "attr:{src: 'http://awt.ifmledit.org' + imgUrl() || '#' }"}/
+  %div{"data-bind" => "if: !image_presence()"}
+    .row
+      .col-xs-12.col-sm-10.col-sm-offset-1
+        %h3.text-center{"data-bind" => "text: error_text"}
+    .row
+      .text-center.margin__top--20px
+        %p.margin__top--10px
+          Go back to  
+          %a{"data-bind" => "click: trigger.bind($data,'task-go')"}
+            Tasks
+        %hr.separator.margin__center

@@ -1,0 +1,82 @@
+<div class='well'>
+<div class='row'>
+<div class='col-sm-9 col-xs-12'>
+<legend>
+Tasks
+</legend>
+</div>
+</div>
+<table class='table table-hover table-striped'>
+<thead>
+<tr>
+<th>#</th>
+<th>Type</th>
+<th class='text-right'>Actions</th>
+</tr>
+</thead>
+<tbody data-bind='foreach: { data: tasks, as: &#39;task&#39; }'>
+<tr>
+<td class='vertical__middle' data-bind='text: ($index()+1)'></td>
+<td class='text-capitalize vertical__middle' data-bind='text: task[&#39;type&#39;]' style='white-space: pre-wrap;'></td>
+<td class='text-right'>
+<a class='btn btn-info' data-bind='click: $parent.modal.bind(task)' data-target='#myModal' data-toggle='modal' type='button'>
+<span aria-hidden='true' class='glyphicon glyphicon-zoom-in'></span>
+</a>
+<span data-bind='if: task[&#39;type&#39;] == &#39;selection&#39;'>
+<a class='btn btn-primary' data-bind='click: $parent.trigger.bind($data, &#39;image-selection-go&#39;,&#39;true&#39;), clickBubble: false'>
+<span aria-hidden='true' class='glyphicon glyphicon-flag'>
+SELECTION
+</span>
+</a>
+</span>
+<span data-bind='if: task.type == &#39;annotation&#39;'>
+<a class='btn btn-primary' data-bind='click: $parent.trigger.bind($data, &#39;image-annotation-go&#39;,&#39;true&#39;), clickBubble: false'>
+<span aria-hidden='true' class='glyphicon glyphicon-pencil'>
+ANNOTATION
+</span>
+</a>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Modal -->
+<div aria-labelledby='myModalLabel' class='modal fade' id='myModal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+<h4 class='modal-title' id='myModalLabel'>Task Statistics</h4>
+</div>
+<div class='modal-body'>
+<ul data-bind='if: selectedTask()[&#39;type&#39;] == &#39;selection&#39;'>
+<li>
+<b>Available:</b>
+<span data-bind='text: available()'></span>
+</li>
+<li>
+<b>Accepted:</b>
+<span data-bind='text: accepted()'></span>
+</li>
+<li>
+<b>Rejected:</b>
+<span data-bind='text: rejected()'></span>
+</li>
+</ul>
+<ul data-bind='if: selectedTask().type == &#39;annotation&#39;'>
+<li>
+<b>Available:</b>
+<span data-bind='text: available()'></span>
+</li>
+<li>
+<b>Annotated:</b>
+<span data-bind='text: annotated()'></span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,111 @@
+<div class='well col-sm-10 col-xs-12 col-sm-offset-1'>
+<div class='row'>
+<div class='col-sm-10 col-xs-12 col-sm-offset-1'>
+<legend class='text-center' data-bind='text: campaign().name'></legend>
+</div>
+</div>
+<div class='list-group'>
+<div class='col-sm-6 col-xs-12'>
+<a class='list-group-item'>
+<h4 class='list-group-item-heading'>Status:</h4>
+<p class='list-group-item-text' data-bind='text: campaign().status'></p>
+</a>
+<a class='list-group-item'>
+<h4 class='list-group-item-heading'>Number of accepted images:</h4>
+<p class='list-group-item-text' data-bind='text: stat().accepted'></p>
+</a>
+<a class='list-group-item'>
+<h4 class='list-group-item-heading'>Number of annotations:</h4>
+<p class='list-group-item-text' data-bind='text: stat().annotation'></p>
+</a>
+</div>
+<div class='col-sm-6 col-xs-12'>
+<a class='list-group-item'>
+<h4 class='list-group-item-heading'>Number of images:</h4>
+<p class='list-group-item-text' data-bind='text: stat().images'></p>
+</a>
+<a class='list-group-item'>
+<h4 class='list-group-item-heading'>Number of rejected images:</h4>
+<p class='list-group-item-text' data-bind='text: stat().rejected'></p>
+</a>
+<a class='list-group-item'>
+<h4 class='list-group-item-heading'>Avg number of annotations per image.</h4>
+<p class='list-group-item-text' data-bind='text: stat().avg '></p>
+</a>
+</div>
+</div>
+</div>
+<div class='well col-sm-10 col-sm-offset-1' data-bind='if: campaign().status == &#39;ended&#39;'>
+<div data-bind='foreach: imagesArray'>
+<div class='panel panel-danger col-sm-6 col-md-4 col-lg-3' data-bind='visible: selection.accepted &lt; selection.rejected'>
+<div class='panel-heading'>
+<p>
+<b>
+Accepted:
+</b>
+<span data-bind='text: selection.accepted'></span>
+</p>
+<p>
+<b>
+Rejected:
+</b>
+<span data-bind='text: selection.rejected'></span>
+</p>
+</div>
+<div class='panel-body'>
+<a data-bind='click: $parent.show'>
+<img class='img-responsive center-block img-thumbnail height__max--170 height__min--170 width__max--170 width__min--170' data-bind='attr:{src: &#39;http://awt.ifmledit.org&#39; + canonical}'>
+</a>
+</div>
+</div>
+<div class='panel panel-success col-sm-6 col-md-4 col-lg-3' data-bind='visible: selection.accepted &gt; selection.rejected'>
+<div class='panel-heading'>
+<p>
+<b>
+Accepted:
+</b>
+<span data-bind='text: selection.accepted'></span>
+</p>
+<p>
+<b>
+Rejected:
+</b>
+<span data-bind='text: selection.rejected'></span>
+</p>
+</div>
+<div class='panel-body'>
+<a data-bind='click: $parent.show'>
+<img class='img-responsive center-block img-thumbnail height__max--170 height__min--170 width__max--170 width__min--170' data-bind='attr:{src: &#39;http://awt.ifmledit.org&#39; + canonical}'>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div aria-hidden='true' aria-labelledby='myModalLabel' class='modal fade' data-bind='if: modalUrl() != undefined' id='imagemodal' role='dialog' tabindex='-1'>
+<div class='modal-dialog'>
+<div class='modal-content'>
+<div class='modal-body'>
+<button class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true' class='glyphicon glyphicon-remove'></span>
+<span class='sr-only'>Close</span>
+</button>
+<br>
+<!-- /%line-drawer.imagepreview{:params => "context: context, src: 'http://awt.ifmledit.org' + modalUrl(), pen: 0, line: ''"} -->
+<img class='imagepreview' data-bind='attr:{src: modalAnnotation()[modalI()]},style: { &#39;backgroundImage&#39;: &#39;url(&#39;+ &#39;http://awt.ifmledit.org&#39;+ modalUrl() +&#39;)&#39;, &#39;backgroundSize&#39;:&#39;cover&#39;,&#39;backgroundRepeat&#39;: &#39;no-repeat&#39;,&#39;backgroundPosition&#39;: &#39;center center&#39;}' style='width: 100%;'>
+<br>
+<div class='row margin__top--10px'>
+<div class='col-xs-12 col-sm-6 text-right'>
+<a class='btn btn-default' data-bind='click: nextAnnotation(-1)'>
+<span aria-hidden='true' class='glyphicon glyphicon-chevron-left'></span>
+</a>
+</div>
+<div class='col-xs-12 col-sm-6'>
+<a class='btn btn-default' data-bind='click: nextAnnotation(1)'>
+<span aria-hidden='true' class='glyphicon glyphicon-chevron-right'></span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
