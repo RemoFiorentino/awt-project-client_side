@@ -14,13 +14,17 @@
         .form-group{"data-bind" => "css: {'has-error': errors()['account-type']}"}
           %label.control-label{"data-bind" => "css: {active: fields()['account-type']}, attr: {'data-error': errors()['account-type']}", :for => "register-form_field_0"} Select account type
           %select#register-form_field_0.form-control.validate{"aria-describedby" => "register-form_field_0_error", "data-bind" => "value: fields()['account-type']", :require => "true"}
-            %option{:value => "master"} Master
+            %option{:value => "master"} Manager
             %option{:value => "worker"} Worker
           %span#register-form_field_0_error.help-block{"data-bind" => "text: errors()['account-type']"}
         .form-group{"data-bind" => "css: {'has-error': errors()['password']}"}
           %label.control-label{"data-bind" => "css: {active: fields()['password']}, attr: {'data-error': errors()['password']}", :for => "register-form_field_2"} Password
-          %input#register-form_field_2.form-control.validate{"aria-describedby" => "register-form_field_2_error", "data-bind" => "value: fields()['password']", :type => "password", :require => "true"}/
+          %input#register-form_field_2.form-control.validate{"aria-describedby" => "register-form_field_2_error", "data-bind" => "textInput: fields()['password']", :type => "password", :require => "true"}/
           %span#register-form_field_2_error.help-block{"data-bind" => "text: errors()['password']"}
+        .form-group{"data-bind" => "css: {'has-error': errors()['confirm_password']}"}
+          %label.control-label{"data-bind" => "css: {active: fields()['confirm_password']}, attr: {'data-error': errors()['confirm_password']}", :for => "account-edit-form_field_1"} Confirm Password
+          %input#register-form_field_2.form-control.validate{"aria-describedby" => "account-edit-form_field_1_error", "data-bind" => "textInput: fields()['confirm_password']", :type => "password"}/
+          %span#register-form_field_2_error.help-block{"data-bind" => "text: errors()['confirm_password']"}
       .row
         .text-center.margin__top--20px
           %a.btn.btn-primary{"data-bind" => "click: trigger.bind($data, 'register-submit')"}

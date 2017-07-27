@@ -3,12 +3,10 @@
 
 var ko = require('knockout'),
     Promise = require('bluebird'),
-    $ = require("jquery"),
-    ob = undefined;
+    $ = require("jquery");
 
 function ViewModel(params) {
     var self = this;
-    ob = this;
     self.context = params.context;
     self.status = ko.observable('');
     self.fields = ko.observable({});

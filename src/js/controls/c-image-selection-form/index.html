@@ -1,1 +1,51 @@
-<h3>image-selection-form</h3><form>    <div class="form-group" data-bind="css: {'has-error': errors()['accepted']}">        <label for="image-selection-form_field_0" data-bind="css: {active: fields()['accepted']}, attr: {'data-error': errors()['accepted']}" class="control-label">accepted</label>        <input id="image-selection-form_field_0" data-bind="value: fields()['accepted']" type="text" class="form-control validate" aria-describedby="image-selection-form_field_0_error">        <span id="image-selection-form_field_0_error" class="help-block" data-bind="text: errors()['accepted']"></span>    </div></form><div class="row">    <a class="col-xs-2 btn btn-primary" data-bind="click: trigger.bind($data, 'image-selection-submit')">image-selection-submit</a></div>
+<div class='well'>
+<div class='row'>
+<div class='col-xs-6 col-xs-offset-3'>
+<legend class='text-center'>
+Validate the Image!!
+</legend>
+</div>
+</div>
+<div data-bind='if: image_presence()'>
+<div class='row'>
+<div class='col-xs-3 col-xs-offset-3 text-right'>
+<a class='btn btn-success' data-bind='click: trigger.bind($data, &#39;image-selection-submit&#39;, &#39;true&#39;)'>
+<span aria-hidden='true' class='glyphicon glyphicon-ok'></span>
+</a>
+</div>
+<div class='col-xs-3'>
+<a class='btn btn-danger' data-bind='click: trigger.bind($data, &#39;image-selection-submit&#39;, &#39;false&#39;)'>
+<span aria-hidden='true' class='glyphicon glyphicon-remove'></span>
+</a>
+</div>
+</div>
+<br>
+<div class='row' data-bind='if: imgUrl() != undefined'>
+<div class='col-xs-12 col-sm-10 col-sm-offset-1'>
+<div class='panel panel-default'>
+<div class='panel-body'>
+<img class='img-responsive center-block' data-bind='attr:{src: &#39;http://awt.ifmledit.org&#39; + imgUrl() || &#39;#&#39; }'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div data-bind='if: !image_presence()'>
+<div class='row'>
+<div class='col-xs-12 col-sm-10 col-sm-offset-1'>
+<h3 class='text-center' data-bind='text: error_text'></h3>
+</div>
+</div>
+<div class='row'>
+<div class='text-center margin__top--20px'>
+<p class='margin__top--10px'>
+Go back to
+<a data-bind='click: trigger.bind($data,&#39;task-go&#39;)'>
+Tasks
+</a>
+</p>
+<hr class='separator margin__center'>
+</div>
+</div>
+</div>
+</div>

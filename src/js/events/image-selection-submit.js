@@ -5,7 +5,9 @@ exports.createEvent = function () { // add "options" parameter if needed
     return function (context, data) {
         data = data || {};
         var packet = {
-            'accepted' : data['accepted']
+            'accepted' : data['accepted'],
+            'id': data['id'],
+            'type': 'selection'
         };
         var promise = context.actions['send-image-selection']({filters: packet});
         context.runningActionsByContainer['image-selection'].push(promise);

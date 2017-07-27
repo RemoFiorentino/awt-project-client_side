@@ -7,7 +7,8 @@ exports.createEvent = function () { // add "options" parameter if needed
         if (!context.vms['image-upload-view']) {
             context.top.active('image-upload-view');
         }
-        if(data.images === undefined){
+        console.log(data.id)
+        if(data.images == undefined){
             $.ajax({
             url: "http://awt.ifmledit.org" + data.id + "/image",
             type: "GET",

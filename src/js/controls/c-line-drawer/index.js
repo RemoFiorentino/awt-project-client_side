@@ -6,7 +6,7 @@ var linefun = (function () {
 
     ko.bindingHandlers.LineDrawSetSize = {
         update: function (element, valueAccessor) {
-            var value = valueAccessor()();
+            var value = ko.unwrap(valueAccessor());
             if (!value) { return; }
             element.height = value.height;
             element.width = value.width;
@@ -57,12 +57,19 @@ var linefun = (function () {
                 $element.on('mousemove', draw);
                 $element.on('mouseup', end);
             });
+        },
+        update: function (element, valueAccessor) {
+            var value = ko.unwrap(valueAccessor()),
+                ctx = element.getContext('2d');
+            if (!value || value === '') {
+                ctx.clearRect(0, 0, element.width, element.height);
+            }
         }
     };
 
     ko.bindingHandlers.LineDrawPen = {
         update: function (element, valueAccessor) {
-            var value = valueAccessor(),
+            var value = ko.unwrap(valueAccessor()),
                 $element = $(element);
             $element.data('pen', value);
         }

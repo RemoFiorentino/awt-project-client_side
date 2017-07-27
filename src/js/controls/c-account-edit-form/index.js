@@ -12,7 +12,17 @@ function ViewModel(params) {
     self.errors = ko.observable({});
 
     self.trigger = function (id) {
-        self.context.events[id](self.context, self.output);
+        var flag = true;
+        for (var key in self.errors()) {
+          if (self.errors().hasOwnProperty(key)) {
+            if(self.errors()[key]() != undefined){
+                flag = false
+            }
+          }
+        }
+        if(flag){
+            self.context.events[id](self.context, self.output);
+        }
     };
 }
 
@@ -21,6 +31,7 @@ ViewModel.prototype.fill = function (errors_sent) {
     this.fields()['password'](this.context.repositories['current_user'].password);
     this.errors()['fullname'](errors_sent.fullname);
     this.errors()['password'](errors_sent.password);
+    this.errors()['others'](errors_sent.others);
 };
 
 ViewModel.prototype.id = 'account-edit-form';
@@ -34,15 +45,18 @@ ViewModel.prototype._compute = function () {
     this.output = {
         'fullname': this.input['fullname'],
         'password': this.input['password'],
+        'confirm_password': this.input['confirm_password'],
     }
     var self = this,
         fields = {
             'fullname': ko.observable(this.input['fullname']),
             'password': ko.observable(this.input['password']),
+            'confirm_password': ko.observable(this.input['confirm_password']),
         },
         errors = {
             'fullname': ko.observable(this.input['fullname-error']),
             'password': ko.observable(this.input['password-error']),
+            'confirm_password': ko.observable(this.input['confirm_password-error']),
             'others': ko.observable(),
         };
     fields['fullname'].subscribe(function (value) {
@@ -52,6 +66,19 @@ ViewModel.prototype._compute = function () {
     fields['password'].subscribe(function (value) {
         self.output['password'] = value;
         self.errors()['password'](undefined);
+        if(self.output['confirm_password'] != self.output['password']){
+            self.errors()['confirm_password']("Must match password");
+        }else{
+            self.errors()['confirm_password'](undefined);
+        }
+    });
+    fields['confirm_password'].subscribe(function (value) {
+        self.output['confirm_password'] = value;
+        if(self.output['confirm_password'] != self.output['password']){
+            self.errors()['confirm_password']("Must match password");
+        }else{
+            self.errors()['confirm_password'](undefined);
+        }
     });
     this.fields(fields);
     this.errors(errors);

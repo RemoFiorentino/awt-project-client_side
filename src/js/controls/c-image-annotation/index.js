@@ -7,7 +7,7 @@ function ViewModel(params) {
     var self = this;
     self.context = params.context;
 
-    self.init = function (options) {
+    self.init = function (options,id,init) {
         options = options || {};
         self.children.forEach(function (child){
             if (child === options.mask) {
@@ -24,7 +24,7 @@ function ViewModel(params) {
 
 ViewModel.prototype.id = 'image-annotation';
 ViewModel.prototype.children = [
-    'image-annotation-form' // image-annotation-form
+    'image-annotation-form', 'line-drawer'
 ];
 
 exports.register = function () {

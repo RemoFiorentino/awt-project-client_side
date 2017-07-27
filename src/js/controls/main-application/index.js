@@ -8,7 +8,7 @@ exports.register = function () {
     ko.components.register('main-application', {
         viewModel: function(params, componentInfo) {
             var self = this,
-                defaultChild = 'home-bar, line-drawer';
+                defaultChild = 'home-bar';
             self.context = params.context;
             self.active = ko.observable(undefined);
             self.logged = ko.observable(false);

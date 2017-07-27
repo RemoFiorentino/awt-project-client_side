@@ -5,8 +5,11 @@ exports.createEvent = function () { // add "options" parameter if needed
     return function (context, data) {
         data = data || {};
         var packet = {
-            'annotation' : data['annotation']
+            'line' : data['line'],
+            'id': data['id'],
+            'type': 'annotation'
         };
+        console.log("submit")
         var promise = context.actions['send-images-annotation']({filters: packet});
         context.runningActionsByContainer['image-annotation'].push(promise);
         promise.then(function (result) {

@@ -13,8 +13,13 @@
 </div>
 <div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;password&#39;]}'>
 <label class='control-label' data-bind='css: {active: fields()[&#39;password&#39;]}, attr: {&#39;data-error&#39;: errors()[&#39;password&#39;]}' for='account-edit-form_field_1'>Password</label>
-<input aria-describedby='account-edit-form_field_1_error' class='form-control validate' data-bind='value: fields()[&#39;password&#39;]' id='account-edit-form_field_1' type='text'>
+<input aria-describedby='account-edit-form_field_1_error' class='form-control validate' data-bind='value: fields()[&#39;password&#39;]' id='account-edit-form_field_1' type='password'>
 <span class='help-block' data-bind='text: errors()[&#39;password&#39;]' id='account-edit-form_field_1_error'></span>
+</div>
+<div class='form-group' data-bind='css: {&#39;has-error&#39;: errors()[&#39;confirm_password&#39;]}'>
+<label class='control-label' data-bind='css: {active: fields()[&#39;confirm_password&#39;]}, attr: {&#39;data-error&#39;: errors()[&#39;confirm_password&#39;]}' for='account-edit-form_field_1'>Confirm Password</label>
+<input aria-describedby='account-edit-form_field_1_error' class='form-control validate' data-bind='textInput: fields()[&#39;confirm_password&#39;]' id='account-edit-form_field_1' type='password'>
+<span class='help-block' data-bind='text: errors()[&#39;confirm_password&#39;]' id='account-edit-form_field_1_error'></span>
 </div>
 </form>
 <div class='row'>

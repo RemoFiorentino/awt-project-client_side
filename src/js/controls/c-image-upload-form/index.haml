@@ -31,9 +31,9 @@
             %span.glyphicon.glyphicon-remove{"aria-hidden" => "true"}
         .panel-body
           %a{"data-bind" => "click: $parent.show"}
-            %img.img-responsive.center-block.img-thumbnail.height__max--170.height__min--170.width__max--170.width__min--170{"data-bind" => "attr:{src: 'http://awt.ifmledit.org' + canonical}"}/ 
-
-#imagemodal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+            %img.img-responsive.center-block.img-thumbnail.height__max--170.height__min--170.width__max--170.width__min--170{"data-bind" => "attr:{src: 'http://awt.ifmledit.org' + canonical}"}
+            
+#imagemodal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "data-bind" => "if: modalUrl() != undefined"}
   .modal-dialog
     .modal-content
       .modal-body

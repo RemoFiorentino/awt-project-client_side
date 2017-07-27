@@ -34,17 +34,16 @@
             Manager
         %li{"data-bind" => "if: !manager()"}
           %a{"data-bind" => "click: trigger.bind($data,'task-go')"}
-            %span.glyphicon.glyphicon-log-out{"aria-hidden" => "true"}
+            %span.glyphicon.glyphicon-tasks{"aria-hidden" => "true"}
             task
-        %li
-          %a{"data-bind" => "click: trigger.bind($data,'logout')"}
-            %span.glyphicon.glyphicon-log-out{"aria-hidden" => "true"}
-            Logout
         %li
           %a{"data-bind" => "click: trigger.bind($data,'account-edit-go')"}
             %span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
             Edit Account
-
+        %li
+          %a{"data-bind" => "click: trigger.bind($data,'logout')"}
+            %span.glyphicon.glyphicon-log-out{"aria-hidden" => "true"}
+            Logout
 
 // %line-drawer{:params => "context:context,src: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Matterhorn_Riffelsee_2005-06-11.jpg', pen: 10, line: line"}
 .container

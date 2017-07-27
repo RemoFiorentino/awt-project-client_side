@@ -2,10 +2,11 @@
 "use strict";
 
 exports.createEvent = function () { // add "options" parameter if needed
-    return function (context) {
+    return function (context,data) {
         if (!context.vms['image-annotation']) {
             context.top.active('image-annotation');
         }
-        context.vms['image-annotation'].init();
+        console.log(data);
+        context.vms['image-annotation-form'].init({},data.id,data.init);
     };
 };

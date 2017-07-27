@@ -11,8 +11,12 @@
           %span#account-edit-form_field_0_error.help-block{"data-bind" => "text: errors()['fullname']"}
         .form-group{"data-bind" => "css: {'has-error': errors()['password']}"}
           %label.control-label{"data-bind" => "css: {active: fields()['password']}, attr: {'data-error': errors()['password']}", :for => "account-edit-form_field_1"} Password
-          %input#account-edit-form_field_1.form-control.validate{"aria-describedby" => "account-edit-form_field_1_error", "data-bind" => "value: fields()['password']", :type => "text"}/
+          %input#account-edit-form_field_1.form-control.validate{"aria-describedby" => "account-edit-form_field_1_error", "data-bind" => "value: fields()['password']", :type => "password"}/
           %span#account-edit-form_field_1_error.help-block{"data-bind" => "text: errors()['password']"}
+        .form-group{"data-bind" => "css: {'has-error': errors()['confirm_password']}"}
+          %label.control-label{"data-bind" => "css: {active: fields()['confirm_password']}, attr: {'data-error': errors()['confirm_password']}", :for => "account-edit-form_field_1"} Confirm Password
+          %input#account-edit-form_field_1.form-control.validate{"aria-describedby" => "account-edit-form_field_1_error", "data-bind" => "textInput: fields()['confirm_password']", :type => "password"}/
+          %span#account-edit-form_field_1_error.help-block{"data-bind" => "text: errors()['confirm_password']"}
       .row
         .text-center.margin__top--20px
           %a.btn.btn-primary{"data-bind" => "click: trigger.bind($data, 'account-edit-submit')"}

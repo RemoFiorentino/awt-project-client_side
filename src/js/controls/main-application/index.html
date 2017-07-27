@@ -49,20 +49,20 @@ Manager
 </li>
 <li data-bind='if: !manager()'>
 <a data-bind='click: trigger.bind($data,&#39;task-go&#39;)'>
-<span aria-hidden='true' class='glyphicon glyphicon-log-out'></span>
+<span aria-hidden='true' class='glyphicon glyphicon-tasks'></span>
 task
-</a>
-</li>
-<li>
-<a data-bind='click: trigger.bind($data,&#39;logout&#39;)'>
-<span aria-hidden='true' class='glyphicon glyphicon-log-out'></span>
-Logout
 </a>
 </li>
 <li>
 <a data-bind='click: trigger.bind($data,&#39;account-edit-go&#39;)'>
 <span aria-hidden='true' class='glyphicon glyphicon-user'></span>
 Edit Account
+</a>
+</li>
+<li>
+<a data-bind='click: trigger.bind($data,&#39;logout&#39;)'>
+<span aria-hidden='true' class='glyphicon glyphicon-log-out'></span>
+Logout
 </a>
 </li>
 </ul>

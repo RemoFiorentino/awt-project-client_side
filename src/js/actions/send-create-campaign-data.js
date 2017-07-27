@@ -33,10 +33,12 @@ Action.prototype.run = function (parameters, solve) { // add "onCancel" paramete
     },
     data: JSON.stringify(datos),
     contentType: "application/json",
-    success: function(result){
+    success: function(result, textStatus, request){
         var myobj = result;
+        data.id = request.getResponseHeader('location')
+        console.log(request.getResponseHeader('location'))
         solve({
-            event: 'manager-go', 
+            event: 'image-upload-go', 
             data: data
         });
     },

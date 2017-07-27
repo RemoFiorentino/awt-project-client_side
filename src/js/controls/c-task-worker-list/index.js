@@ -2,36 +2,64 @@
 "use strict";
 
 var ko = require('knockout'),
-    Promise = require('bluebird');
+    Promise = require('bluebird'),
+    $ = require("jquery");
 
 function ViewModel(params) {
     var self = this;
     self._repository = params.context.repositories['tasks'];
     self.context = params.context;
     self.status = ko.observable('');
-    self.selected = ko.observable(undefined);
-    self.items = ko.observableArray([]);
+    self.tasks = ko.observableArray([]);
+    self.selectedTask = ko.observable({});
+    self.available = ko.observable();
+    self.accepted = ko.observable();
+    self.rejected = ko.observable();
+    self.annotated = ko.observable();
+    
+    self.modal = function(task){
+        console.log(task);
+        self.selectedTask(task);
+        console.log(self.selectedTask());
+        $.ajax({
+        url: "http://awt.ifmledit.org" + task.id + "/statistics",
+        type: "GET",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "APIToken "+ self.context.repositories.current_user.token);
+        },
+        success: function(result){
+            var myobj = result;
+            self.available(myobj.available);
+            self.accepted(myobj.accepted);
+            self.rejected(myobj.rejected);
+            self.annotated(myobj.annotated);
+        }
+        });
+    }
 
-    self.select = function() {
-        self.selected(this.id);
-        self.output = this;
-    };
-
-    self.trigger = function (id) {
+    self.trigger = function (id,init) {
+        this.init = init;
         self.context.events[id](self.context, this);
     };
 }
 
-ViewModel.prototype.id = 'task-worker-list';
-
-ViewModel.prototype.fields = {
-    id: 1
-    ,'accepted': 1
-    ,'annotated': 1
-    ,'available': 1
-    ,'rejected': 1
-    ,'type': 1
+ViewModel.prototype.get_data = function(context){
+    var self = this;
+    $.ajax({
+    url: "http://awt.ifmledit.org/api/task",
+    type: "GET",
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader ("Authorization", "APIToken "+ context.repositories.current_user.token);
+    },
+    success: function(result){
+        var myobj = result;
+        myobj = myobj.tasks;
+        self.tasks(myobj);
+    }
+    });
 };
+
+ViewModel.prototype.id = 'task-worker-list';
 
 ViewModel.prototype.waitForStatusChange = function () {
     return this._computing ||
@@ -44,16 +72,9 @@ ViewModel.prototype._compute = function() {
         this._computing.cancel();
     }
     var self = this;
-    this._computing = this._repository.find(this.filters, this.fields).then(function (items) {
-        self.selected(undefined);
-        self.items(items);
-        if (items.length) {
-            self.selected(items[0].id);
-            self.output = items[0];
-        }
-        self.status('computed');
-        self._computing = undefined;
-    });
+    self.tasks([]);
+    self.status('computed');
+    self._computing = undefined;
 };
 
 
@@ -66,6 +87,7 @@ ViewModel.prototype.init = function (options) {
     this._initializing = new Promise(function (resolve) {
         setTimeout(function () {
             self._compute();
+            self.get_data(self.context);
             resolve();
             self._initializing = undefined;
         }, 1);
